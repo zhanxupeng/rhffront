@@ -12,7 +12,7 @@ const userLogin={
         return post(baseURL+'/customer/login.do',param)
     },
     getInfo(){
-        return post(baseURL+'/customer/getInfo.do')
+        return fetch(baseURL+'/customer/getInfo.do')
     }
 }
 

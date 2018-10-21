@@ -46,11 +46,7 @@
                             that.$router.push({path: '/hello'});
                         }
 
-                    }).catch(err => {
-                        console.log(err);
-                        iView.Message.error('网络请求发生错误！')
-                        reject(err)
-                        });
+                    })
                     } else {
                         this.$Message.error('Fail!');
                     }

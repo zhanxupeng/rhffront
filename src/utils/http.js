@@ -1,5 +1,6 @@
 import axios from 'axios'
 import iView from 'iview'
+import Qs from 'qs'
 
 axios.defaults.timeout = 300000
 axios.defaults.baseURL = ''
@@ -57,7 +58,7 @@ export function post (url, data = {}) {
   return http({
     method: 'POST',
     url: url,
-    data: JSON.stringify(data),
+    data: Qs.stringify(data),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
@@ -68,7 +69,7 @@ export function postBlob (url, data = {}) {
     method: 'POST',
     url: url,
     responseType: 'blob',
-    data: JSON.stringify(data),
+    data: Qs.stringify(data),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
