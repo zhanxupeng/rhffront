@@ -13,6 +13,9 @@ const userLogin={
     },
     getInfo(){
         return fetch(baseURL+'/customer/getInfo.do')
+    },
+    ifNeetCaptcha(param){
+        return post(baseURL + '/customer/ifNeetCaptcha.pub',param)
     }
 }
 

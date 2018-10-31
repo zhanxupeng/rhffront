@@ -4,12 +4,20 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import iview from 'iview'
+import VueCookies from 'vue-cookies'
 import 'iview/dist/styles/iview.css'
 import API from './utils/api'
+import store from './utils/store'
+import './assets/fonts/iconfont.css' // 引入阿里字体图标
+
+
 
 Vue.config.productionTip = false
 
 Vue.use(iview)
+Vue.use(VueCookies)
+console.log('vueCookies')
+console.log(VueCookies)
 
 // 定义全局变量
 Vue.prototype.API = API
@@ -18,6 +26,6 @@ Vue.prototype.API = API
 new Vue({
   el: '#app',
   router,
-  components: { App },
-  template: '<App/>'
+  store,
+  render: h => h(App)
 })
