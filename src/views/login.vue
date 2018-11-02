@@ -157,7 +157,11 @@
 
       // 获取验证码
       getVerify() {
-        this.codeimg = this.API.baseUrl + '/usercore/userLogin/getCaptchaImage.pub?' + Math.random()
+        console.log("getVerify方法")
+        console.log(this.API.commonAPI.correntURL)
+        this.codeimg = 'http://10.60.45.129:8087' + '/customer/getCaptchaImage.pub?' + Math.random()
+        console.log("this.codeing")
+        console.log(this.codeing)
       },
 
 
@@ -181,7 +185,7 @@
               password: this.logindata.pwd,
               ...params
             }
-            that.API.login(data).then(res => {
+            that.API.userLogin.login(data).then(res => {
               if (res.code === '0') {
                 this.$cookies.set('userName', res.data.loginId) // 登录账号
                 this.$cookies.set('userId', res.data.urid) // 登录账号id

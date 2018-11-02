@@ -1,5 +1,5 @@
 import {post, postBlob, put, patch, fetch, jsonPost, filePost} from './http'
-import {baseURL} from './apiUrl'
+import {baseURL,correntURL} from './apiUrl'
 
 const firstTest={
     test(param){
@@ -9,7 +9,7 @@ const firstTest={
 
 const userLogin={
     login(param){
-        return post(baseURL+'/customer/login.do',param)
+        return post(baseURL+'/customer/login.pub',param)
     },
     getInfo(){
         return fetch(baseURL+'/customer/getInfo.do')
@@ -19,9 +19,14 @@ const userLogin={
     }
 }
 
+const commonAPI={
+    correntURL
+}
+
 const API={
     firstTest,
-    userLogin
+    userLogin,
+    commonAPI
 }
 
 

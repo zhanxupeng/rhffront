@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import login from '@/views/login' // 登录页
+import index from '@/views/index' // 主页面
 Vue.use(Router)
 
 let routerConfig = [
@@ -11,9 +11,9 @@ let routerConfig = [
     component: login
   },
   {
-    path: '/hello',
-    name: 'HelloWorld',
-    component: HelloWorld
+    path: '/views/index',
+    name: 'index',
+    component: index
   }
 ]
 
