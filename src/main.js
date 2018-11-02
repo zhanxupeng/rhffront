@@ -12,10 +12,12 @@ import './assets/fonts/iconfont.css' // 引入阿里字体图标
 
 
 
+
 Vue.config.productionTip = false
 
 Vue.use(iview)
 Vue.use(VueCookies)
+
 console.log('vueCookies')
 console.log(VueCookies)
 

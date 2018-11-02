@@ -1,0 +1,131 @@
+
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened {
+  background: #303C4A;
+}
+
+.ivu-layout .ivu-menu-dark {
+  background: #121C25;
+  width: 220px;
+}
+
+.icon {
+  font-size: 20px;
+}
+
+.ivu-layout .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title:hover {
+  color: #fff;
+  background: #121C25;
+}
+
+.ivu-layout .ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened .ivu-menu-submenu-title {
+  background: #121C25;
+}
+.ivu-layout .ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened .ivu-menu>li> .ivu-menu-submenu-title {
+  background: #000;
+}
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened {
+  background: #000;
+}
+.ivu-layout-sider-collapsed .menu .menuNormal {
+  //width: 0px;
+  transition: width 0.2s ease;
+  overflow: hidden;
+}
+.ivu-layout-sider-zero-width-trigger {
+  height: 42px;
+  line-height: 42px;
+  background: #121C25;
+  color: #fff;
+  font-size: 18px;
+}
+.ivu-menu-vertical .ivu-menu-submenu-title-icon.ivu-icon-ios-arrow-down:before {
+  content: "\F3D3";
+}
+.ivu-menu-opened>*>.ivu-menu-submenu-title-icon.ivu-icon-ios-arrow-down {
+  transform: rotate(90deg);
+}
+.ivu-menu-opened>.ivu-menu-submenu-title>.ivu-menu-submenu-title-icon.ivu-icon-ios-arraw-down{
+  display: none;
+}
+.ivu-layout .ivu-layout-sider{
+  background: #121C25;
+  .menu {
+    display: block;
+    overflow: auto;
+    height: 100%;
+    font-weight: bold;
+    .menuTop {
+      width: 100%;
+      height: 55px;
+      padding-top: 10px;
+      font-weight: bold;
+      font-size: 18px;
+      background: #1F82FB;
+      color: #fff;
+      text-align: center;
+    }
+    ul {
+      list-style: none none;
+    }
+    .menuNormal {
+      height: 100%;
+      overflow-x: hidden;
+      font-weight: bold;
+      .ivu-menu-submenu-title + .ivu-menu {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        background: #000;
+        > .ivu-menu-item {
+          font-weight: bold;
+          //color: @guide-color;
+          color: #888D92;
+          padding-top: 7px;
+          padding-bottom: 8px;
+          line-height: 20px;
+          padding-left: 30px !important;
+          &:before {
+            content: ' ';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            background: none;
+            margin-right: 8px;
+            margin-left: 15px;
+            position: relative;
+            top: -2px;
+          }
+        }
+        > .ivu-menu-submenu{
+          margin-left:30px;
+          > .ivu-menu >li {
+            padding-left: 30px !important;
+          }
+        }
+        > .ivu-menu-item:hover {
+          color: #fff
+        }
+        > .ivu-menu-item.ivu-menu-item-active {
+          color: #fff;
+          background: none !important;
+          &:before {
+            background: @theme-color;
+          }
+        }
+      }
+      > ul {
+        padding-top: 15px;
+      }
+      ul {
+        overflow: hidden;
+        font-size: 14px;
+        font-weight: bold;
+        vertical-align: middle;
+        .index {
+          padding: 0 20px 0 20px;
+        }
+      }
+    }
+  }
+
+}

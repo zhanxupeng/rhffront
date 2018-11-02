@@ -1,0 +1,93 @@
+.detailBox {
+  margin: 20px 30px;
+  border-top: 1px solid @border-color;
+  border-left: 1px solid @border-color;
+  .ivu-row-flex {
+    margin-top: 0;
+    line-height: 44px;
+    border-bottom: 1px solid @border-color;
+    .ivu-row {
+      margin-top: 0;
+      border-right: 1px solid @border-color;
+    }
+    .ivu-col-span-6,
+    .ivu-col-span-8,
+    .ivu-col-span-3 {
+      line-height: 17px;
+      border-right: 1px solid @border-color;
+      background: @detail-bg;
+      padding: 15px 20px 14px;
+      color: @text-color;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .ivu-col-span-18,
+    .ivu-col-span-16,
+    .ivu-col-span-21 {
+      font-size: 12px;
+      line-height: 17px;
+      padding: 15px 20px 14px;
+      color: @text-color;
+      font-weight: bold;
+    }
+    .ivu-col-span-21 {
+      border-right: 1px solid @border-color;
+    }
+  }
+}
+.detail-page {
+  .ivu-tabs-nav .ivu-tabs-tab {
+    padding: 11px 7px;
+    color: @text-color;
+  }
+  .ivu-tabs-nav .ivu-tabs-tab-active {
+    color: @theme-color;
+  }
+  .ivu-tabs-ink-bar {
+    background-color: @theme-color;
+  }
+  .ivu-tree-title {
+    color: @text-color;
+  }
+  .ivu-icon-arrow-right-b:before {
+    color: #6E7680;
+  }
+}
+.detail-tree-box-wrap {
+  padding: 20px 30px;
+  height: 100%;
+}
+.detail-tree-box {
+  border: 1px solid @border-color;
+  padding: 20px 0 20px 20px;
+  height: 100%;
+}
+.detail-table-box {
+  padding-top: 20px;
+  .detail-table {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+// 部分页面存在label过长换行的情况，此时左侧表格高度未变
+.flex-detail-box {
+  .detail-label {
+    border-left: 1px solid @border-color;
+    // 兼容旧样式
+    &:nth-of-type(1) {
+      border-left: none;
+    }
+  }
+  .detail-content {
+    border-right: none!important;
+    font-size: 12px;
+    line-height: 17px;
+    padding: 15px 20px 14px;
+    color: #303c4a;
+    font-weight: bold;
+  }
+  .ivu-row-flex {
+    border-right: 1px solid @border-color;
+  }
+}

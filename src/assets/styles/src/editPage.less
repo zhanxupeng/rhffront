@@ -1,0 +1,117 @@
+.addPage {
+  background: #fff;
+  position: absolute;
+  top: 70px;
+  bottom: 10px;
+  right: 20px;
+  left: 20px;
+  .pageTop {
+    border-bottom-width: 1px;
+    height: 61px;
+  }
+  .my-form-wrap {
+    height: calc(100% - 61px);
+    > .ivu-form {
+      height: calc(100% - 72px);
+      width: 100%;
+      overflow-y: auto;
+    }
+  }
+  .my-tree-wrap{
+    height: calc(100% - 138px);
+    .el-scrollbar {
+      width: 100%;
+    }
+  }
+  .my-tabs-wrap {
+    height: calc(100% - 61px);
+    padding-top: 20px;
+    > .ivu-tabs {
+      height: 100%;
+      .ivu-tabs-content {
+        height: calc(100% - 36px);
+      }
+    }
+  }
+  .ivu-tabs-bar {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding: 0 30px;
+  }
+  //.ivu-select-single .ivu-select-selection {
+  //  height: 36px;
+  //}
+  //.ivu-select-single .ivu-select-selection .ivu-select-placeholder {
+  //  height: 36px;
+  //  line-height: 36px;
+  //}
+  .addPageul {
+    padding: 40px 0 20px 30px;
+    list-style: none;
+    .ivu-select-not-found li {
+      width: 340px
+    }
+    .ivu-form-item-content {
+      width: 350px;
+    }
+    .add-page-item {
+      width: 520px;
+      float: left;
+      .ivu-input {
+        font-size: 12px;
+      }
+      textarea.ivu-input {
+        min-height: 52px;
+      }
+    }
+    .blank-form-item {
+      height: 36px;
+    }
+  }
+  .btnBoxs {
+    width: 100%;
+    //padding-bottom: 20px;
+    text-align: center;
+    height: 74px;
+    line-height: 72px;
+    border-top: 2px solid @bg;
+    .ivu-btn {
+      margin: 0 5px;
+      width: 160px;
+      height: 36px;
+      font-weight: bold;
+    }
+  }
+  .ivu-form-item-content {
+    .ivu-select-dropdown-list {
+      padding: 0;
+      overflow-x: hidden;
+      .ivu-select-item {
+        //width: 340px
+      }
+    }
+  }
+  .ivu-form .ivu-form-item-label {
+    color: @text-color;
+    font-weight: bold;
+    a, &:after {
+      font-weight: normal;
+    }
+  }
+}
+.link {
+  color: @text-color;
+  font-weight: bold;
+  a, &:after {
+    font-weight: normal;
+  }
+}
+// 新增编辑页面文本输入框
+.my-small-textarea {
+  height: 36px;
+  min-height: 36px;
+  textarea {
+    height: 36px!important;
+    min-height: 36px!important;
+  }
+}

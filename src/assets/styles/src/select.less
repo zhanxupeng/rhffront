@@ -1,0 +1,21 @@
+.ivu-select-selection {
+  > input + div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+.el-select__tags {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  > span {
+    white-space: nowrap;
+    width: calc(100% - 36px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  > .el-select__input.is-small {
+    width: 28px!important;
+  }
+}
