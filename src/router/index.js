@@ -2,11 +2,17 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import login from '@/views/login' // 登录页
 import index from '@/views/index' // 主页面
+import test from '@/views/test'
 Vue.use(Router)
 
 let routerConfig = [
   {
-    path: '/',
+    path:'/',
+    name:'test',
+    component:test
+  },
+  {
+    path: '/login',
     name: 'login',
     component: login
   },

@@ -10,6 +10,7 @@ import API from './utils/api'
 import store from './utils/store'
 import './assets/fonts/iconfont.css' // 引入阿里字体图标
 
+import SubmenuSystem from './components/SubmenuSystem'
 
 
 
@@ -17,6 +18,8 @@ Vue.config.productionTip = false
 
 Vue.use(iview)
 Vue.use(VueCookies)
+
+Vue.component('submenu-system', SubmenuSystem)
 
 console.log('vueCookies')
 console.log(VueCookies)
