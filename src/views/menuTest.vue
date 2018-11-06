@@ -53,32 +53,26 @@
   <div class="layout">
     <Layout :style="{height: '100vh'}">
       <Sider ref="side1" hide-trigger collapsible :collapsed-width="78" v-model="isCollapsed">
-        <img v-show="!isCollapsed" :src="logoSrc" alt="" width="100%" height="50" />
         <Menu active-name="1-2" theme="dark" width="auto" :class="menuitemClasses">
-          <Submenu name="1">
-            <template slot="title">
-              <Icon type="ios-navigate"></Icon>
-              基础资料
-            </template>
-            <MenuItem name="1-1">Option 1</MenuItem>
-            <MenuItem name="1-2">Option 2</MenuItem>
-            <MenuItem name="1-3">Option 3</MenuItem>
-          </Submenu>
-          <Submenu name="2">
-            <template slot="title">
-              <Icon type="ios-keypad"></Icon>
-              渠道产品
-            </template>
-            <MenuItem name="2-1">Option 1</MenuItem>
-            <MenuItem name="2-2">Option 2</MenuItem>
-          </Submenu>
+          <MenuItem name="1-1">
+          <Icon type="ios-navigate"></Icon>
+          <span>Option 1</span>
+          </MenuItem>
+
+          <MenuItem name="1-2">
+          <Icon type="ios-search"></Icon>
+          <span>Option 2</span>
+          </MenuItem>
+
+          <MenuItem name="1-3">
+          <Icon type="ios-settings"></Icon>
+          <span>Option 3</span>
+          </MenuItem>
+          
           <Submenu name="3">
-            <template slot="title">
-              <Icon type="ios-analytics"></Icon>
-              交易查询
-            </template>
-            <MenuItem name="3-1">Option 1</MenuItem>
-            <MenuItem name="3-2">Option 2</MenuItem>
+            <template slot="title">Submenu</template>
+            <MenuItem name="3-1">Option 7</MenuItem>
+            <MenuItem name="3-2">Option 8</MenuItem>
           </Submenu>
         </Menu>
       </Sider>
@@ -86,32 +80,19 @@
         <Header :style="{padding: 0}" class="layout-header-bar">
           <Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: '0 20px'}" type="md-menu" size="24"></Icon>
         </Header>
-        
-        <div style="margin:20px 20px 0 20px">
-          <!-- <Tabs type="card" @on-tab-remove="handleTabRemove" @on-click="jumpTo" v-model="tabsName">
-<TabPane key="index" name="/views/index" label="首页" ref="indexTab"></TabPane>
-<TabPane closable v-for="item in menuLists" :key="item.id" :name="item.url" :label="item.name"></TabPane> -->
-      </Tabs>
-        </div>
-
         <Content :style="{margin: '20px', background: '#fff', minHeight: '260px'}">
-          <router-view></router-view>
+          Content
         </Content>
       </Layout>
     </Layout>
   </div>
 </template>
 <script>
-  import logoimg from './../assets/img/logo.png'
   export default {
     data() {
       return {
-        isCollapsed: false,
-        logoSrc: logoimg
+        isCollapsed: false
       }
-    },
-    mounted(){
-      this.$router.push({name:'tableTest'})
     },
     computed: {
       rotateIcon() {
