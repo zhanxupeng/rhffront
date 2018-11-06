@@ -111,7 +111,7 @@
       }
     },
     mounted(){
-      this.$router.push({name:'tableTest'})
+      this.$router.push({name:'addTest'})
     },
     computed: {
       rotateIcon() {

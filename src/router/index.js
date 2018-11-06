@@ -3,8 +3,11 @@ import Router from 'vue-router'
 import login from '@/views/login' // 登录页
 import index from '@/views/index' // 主页面
 //import test from '@/views/test' //菜单测试
-import tableTest from '@/views/tableTest' //表格测试
+//import tableTest from '@/views/tableTest' //表格测试
 //import menuTest from '@/views/menuTest' // 菜单修复测试
+//import treeTest from '@/views/treeTest' //树形结构测试
+import addTest from '@/views/addTest' //新增测试
+
 Vue.use(Router)
 
 let routerConfig = [
@@ -19,9 +22,9 @@ let routerConfig = [
     component: index,
     children:[
       {
-        path:'/views/index/tableTest',
-        name:'tableTest',
-        component:tableTest
+        path:'/views/index/addTest',
+        name:'addTest',
+        component:addTest
       }
     ]
   }
