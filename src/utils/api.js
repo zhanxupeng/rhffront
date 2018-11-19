@@ -1,3 +1,4 @@
+import axios from 'axios'
 import {post, postBlob, put, patch, fetch, jsonPost, filePost} from './http'
 import {baseURL,correntURL} from './apiUrl'
 
@@ -9,13 +10,13 @@ const firstTest={
 
 const userLogin={
     login(param){
-        return post(baseURL+'/customer/login.pub',param)
+        return post(baseURL+'/websys/userlogin/login.pub',param)
     },
     getInfo(){
         return fetch(baseURL+'/customer/getInfo.do')
     },
     ifNeetCaptcha(param){
-        return post(baseURL + '/customer/ifNeetCaptcha.pub',param)
+        return fetch(baseURL + '/websys/userlogin/ifNeetCaptcha.pub',param)
     }
 }
 

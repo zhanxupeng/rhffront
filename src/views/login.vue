@@ -159,7 +159,7 @@
       getVerify() {
         console.log("getVerify方法")
         console.log(this.API.commonAPI.correntURL)
-        this.codeimg = 'http://10.60.45.129:8087' + '/customer/getCaptchaImage.pub?' + Math.random()
+        this.codeimg = '/api' + '/websys/userlogin/getCaptchaImage.pub?' + Math.random()
         console.log("this.codeing")
         console.log(this.codeing)
       },
@@ -185,31 +185,34 @@
               password: this.logindata.pwd,
               ...params
             }
-            that.API.userLogin.login(data).then(res => {
-              if (res.code === '0') {
-                this.$cookies.set('userName', res.data.loginId) // 登录账号
-                this.$cookies.set('userId', res.data.urid) // 登录账号id
-                this.userId = res.data.urid // 登录账号id
-                localStorage.setItem('name', '')
-                localStorage.setItem('TabMenuLists', '')
-                localStorage.setItem('selectMenuUrl', '')
-                localStorage.setItem('openNames', '')
-                localStorage.setItem('modulePerMap', '')
-                if (res.data.needChangPassWord) {
-                  that.Modal = true
-                } else {
-                  that.$router.push({
-                    path: '/views/index'
-                  })
-                }
-              } else {
-                if (res.code === '1' || res.info === '验证码输入有误！') {
-                  that.codeShow = true
-                  that.getVerify()
-                }
-                // that.$Message.warning(res.info)
-              }
+            that.$router.push({
+              path:'/views/index'
             })
+            // that.API.userLogin.login(data).then(res => {
+            //   if (res.code === '0') {
+            //     this.$cookies.set('userName', res.data.loginId) // 登录账号
+            //     this.$cookies.set('userId', res.data.urid) // 登录账号id
+            //     this.userId = res.data.urid // 登录账号id
+            //     localStorage.setItem('name', '')
+            //     localStorage.setItem('TabMenuLists', '')
+            //     localStorage.setItem('selectMenuUrl', '')
+            //     localStorage.setItem('openNames', '')
+            //     localStorage.setItem('modulePerMap', '')
+            //     if (res.data.needChangPassWord) {
+            //       that.Modal = true
+            //     } else {
+            //       that.$router.push({
+            //         path: '/views/index'
+            //       })
+            //     }
+            //   } else {
+            //     if (res.code === '1' || res.info === '验证码输入有误！') {
+            //       that.codeShow = true
+            //       that.getVerify()
+            //     }
+            //     // that.$Message.warning(res.info)
+            //   }
+            // })
           }
         })
       },
