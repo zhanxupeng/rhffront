@@ -6,7 +6,9 @@
       {{item.subMenuTitle}}
     </template>
     <template v-for="menuItem in item.itemList">
-      <MenuItem :name="menuItem.name">{{menuItem.label}} </MenuItem>
+      <MenuItem :name="menuItem.name">
+        <router-link :to="menuItem.name">{{menuItem.label}}</router-link>
+      </MenuItem>
     </template>
     <template v-if="item.children !== undefined && item.children !== null">
       <submenu-system :item="item.children"></submenu-system>

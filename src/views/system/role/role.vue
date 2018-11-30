@@ -10,7 +10,7 @@
     </div>
 
     <div>
-      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="100" :label-position="left">
+      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="100" :label-position="'left'">
 
         <Scroll :height="500">
           <ul class="addPageul">
@@ -160,7 +160,7 @@
   export default {
     data() {
       return {
-        menuTitle: '合作渠道',
+        menuTitle: '角色',
         title: '新增',
         formValidate: {
           name: '',
