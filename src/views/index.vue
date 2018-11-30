@@ -132,11 +132,10 @@
     },
     watch: {
       currentTab(val) {
-        console.log("当前的路由:" + val)
+        this.$root.$data.menuTitle = this.getMenuPrefix(val)
         this.$router.push({
           path: val
         })
-        console.log("watch currentTab:" + val)
       }
     },
     computed: {
@@ -148,6 +147,10 @@
       }
     },
     methods: {
+      getMenuPrefix(name){
+        let current=this.tabList.filter(x => x.name === name)
+        return current[0].label
+      },
       collapsedSider() {
         this.$refs.side1.toggleCollapse();
       },

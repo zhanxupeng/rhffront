@@ -58,7 +58,7 @@
           </div>
 
           <div class="operationStyle">
-            <Button>新增</Button>
+            <Button @click="add">新增</Button>
             <Button>编辑</Button>
             <Button>删除</Button>
             <Button>启用</Button>
@@ -89,33 +89,33 @@
       return {
         data11: [{
           title: 'parent 1',
-          value:'1',
+          value: '1',
           expand: true,
           children: [{
               title: 'parent 1-1',
-              value:'1-1',
+              value: '1-1',
               expand: true,
               children: [{
                   title: 'leaf 1-1-1',
-                  value:'1-1-1'
+                  value: '1-1-1'
                 },
                 {
                   title: 'leaf 1-1-2',
-                  value:'1-1-2'
+                  value: '1-1-2'
                 }
               ]
             },
             {
               title: 'parent 1-2',
-              value:'1-2',
+              value: '1-2',
               expand: true,
               children: [{
                   title: 'leaf 1-2-1',
-                  value:'1-2-1'
+                  value: '1-2-1'
                 },
                 {
                   title: 'leaf 1-2-2',
-                  value:'1-2-2'
+                  value: '1-2-2'
                 }
               ]
             }
@@ -277,10 +277,15 @@
       }
     },
     methods: {
+      add() {
+        this.$router.push({
+          name: 'menuAdd'
+        })
+      },
       treeSelectChange(checked) {
-          if(checked.length >0){
-            console.log(checked[0].value)
-          }
+        if (checked.length > 0) {
+          console.log(checked[0].value)
+        }
       },
       handleSubmit(name) {
 
