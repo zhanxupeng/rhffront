@@ -1,158 +1,74 @@
 <template>
   <div>
-    <div class="pageTop">
-      <div class="fl">
-        <a @click="turnBack">{{menuTitle}}</a>
-        <span>></span>
-        {{title}}
-      </div>
-      <div class="fr"><a @click="turnBack">×</a></div>
-    </div>
-
-    <div>
-      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="100" :label-position="'left'">
-
-        <Scroll :height="500">
-          <ul class="addPageul">
-            <li class="add-page-item">
-              <FormItem label="名字" prop="name">
-                <Input v-model="formValidate.name" placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="邮箱" prop="mail">
-                <Input v-model="formValidate.mail" placeholder="Enter your e-mail"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="城市" prop="city">
-                <Select v-model="formValidate.city" placeholder="Select your city">
-                  <Option value="beijing">New York</Option>
-                  <Option value="shanghai">London</Option>
-                  <Option value="shenzhen">Sydney</Option>
-                </Select>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="性别" prop="gender">
-                <RadioGroup v-model="formValidate.gender">
-                  <Radio label="male">Male</Radio>
-                  <Radio label="female">Female</Radio>
-                </RadioGroup>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="爱好" prop="interest">
-                <CheckboxGroup v-model="formValidate.interest">
-                  <Checkbox label="Eat"></Checkbox>
-                  <Checkbox label="Sleep"></Checkbox>
-                  <Checkbox label="Run"></Checkbox>
-                  <Checkbox label="Movie"></Checkbox>
-                </CheckboxGroup>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="描述" prop="desc">
-                <Input v-model="formValidate.desc" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..."></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-          </ul>
-        </Scroll>
-
-        <div class="submit-add">
-          <FormItem>
-            <Button type="primary" @click="handleSubmit('formValidate')">保存</Button>
-            <Button @click="handleReset('formValidate')" style="margin-left: 8px">重置</Button>
-          </FormItem>
-        </div>
+    <div class="searchStyle">
+      <Form ref="formInline" :model="formInline" inline label-position="right" :label-width="100">
+        <FormItem prop="user" label="用户名">
+          <Input type="text" v-model="formInline.user" placeholder="Username"></Input>
+        </FormItem>
+        <FormItem prop="password" label="密码">
+          <Input type="password" v-model="formInline.password" placeholder="Password"></Input>
+        </FormItem>
+        <FormItem prop="country" label="国家">
+          <Select v-model="formInline.country" placeholder="国家" style="width:169px">
+            <Option value="beijing">New York</Option>
+            <Option value="shanghai">London</Option>
+            <Option value="shenzhen">Sydney</Option>
+          </Select>
+        </FormItem>
+        <FormItem prop="province" label="身份">
+          <Select v-model="formInline.province" placeholder="身份" style="width:169px">
+            <Option value="beijing">New York</Option>
+            <Option value="shanghai">London</Option>
+            <Option value="shenzhen">Sydney</Option>
+          </Select>
+        </FormItem>
+        <FormItem prop="city" label="城市">
+          <Select v-model="formInline.city" placeholder="城市" style="width:169px">
+            <Option value="beijing">New York</Option>
+            <Option value="shanghai">London</Option>
+            <Option value="shenzhen">Sydney</Option>
+          </Select>
+        </FormItem>
+        <FormItem prop="city1" label="城市">
+          <Select v-model="formInline.city1" placeholder="城市" style="width:169px">
+            <Option value="beijing">New York</Option>
+            <Option value="shanghai">London</Option>
+            <Option value="shenzhen">Sydney</Option>
+          </Select>
+        </FormItem>
+        <FormItem prop="city2" label="城市">
+          <Select v-model="formInline.city2" placeholder="城市" style="width:169px">
+            <Option value="beijing">New York</Option>
+            <Option value="shanghai">London</Option>
+            <Option value="shenzhen">Sydney</Option>
+          </Select>
+        </FormItem>
+        <FormItem>
+          <Button type="primary" @click="handleSubmit('formInline')">查询</Button>
+          <Button @click="handleReset('formInline')" style="margin-left: 8px">重置</Button>
+        </FormItem>
       </Form>
     </div>
 
+    <div class="operationStyle">
+      <Button @click="add">新增</Button>
+      <Button>编辑</Button>
+      <Button>删除</Button>
+      <Button>启用</Button>
+      <Button>停用</Button>
+    </div>
+    <div>
+      <div>
+        <Table height="500" :columns="columns1" :data="data1" :loading="loading" @on-selection-change="selectChange"
+          @on-sort-change="sortChange" @on-row-dblclick="onDblclick">
+        </Table>
+
+      </div>
+      <div class="pageStyle footer">
+        <Page :total="total" show-elevator show-total show-sizer :page-size-opts="[10,20,50,100]" @on-change="changePage"
+          @on-page-size-change="changePageSize" />
+      </div>
+    </div>
 
   </div>
 </template>
@@ -160,86 +76,188 @@
   export default {
     data() {
       return {
-        menuTitle: '角色',
-        title: '新增',
-        formValidate: {
-          name: '',
-          mail: '',
-          city: '',
-          gender: '',
-          interest: [],
-          date: '',
-          time: '',
-          desc: ''
+
+        formInline: {
+          user: '',
+          password: ''
         },
-        ruleValidate: {
-          name: [{
+        ruleInline: {
+          user: [{
             required: true,
-            message: 'The name cannot be empty',
+            message: 'Please fill in the user name',
             trigger: 'blur'
           }],
-          mail: [{
+          password: [{
               required: true,
-              message: 'Mailbox cannot be empty',
-              trigger: 'blur'
-            },
-            {
-              type: 'email',
-              message: 'Incorrect email format',
-              trigger: 'blur'
-            }
-          ],
-          city: [{
-            required: true,
-            message: 'Please select the city',
-            trigger: 'change'
-          }],
-          gender: [{
-            required: true,
-            message: 'Please select gender',
-            trigger: 'change'
-          }],
-          interest: [{
-              required: true,
-              type: 'array',
-              min: 1,
-              message: 'Choose at least one hobby',
-              trigger: 'change'
-            },
-            {
-              type: 'array',
-              max: 2,
-              message: 'Choose two hobbies at best',
-              trigger: 'change'
-            }
-          ],
-          desc: [{
-              required: true,
-              message: 'Please enter a personal introduction',
+              message: 'Please fill in the password.',
               trigger: 'blur'
             },
             {
               type: 'string',
-              min: 20,
-              message: 'Introduce no less than 20 words',
+              min: 6,
+              message: 'The password length cannot be less than 6 bits',
               trigger: 'blur'
             }
           ]
-        }
+        },
+
+        columns1: [{
+            type: 'index',
+            width: 70,
+            title: '序号'
+          },
+          {
+            type: 'selection',
+            width: 60,
+            align: 'center'
+          },
+          {
+            title: 'Name',
+            key: 'name',
+            sortable: 'custom'
+          },
+          {
+            title: 'Age',
+            key: 'age'
+          },
+          {
+            title: 'Address',
+            key: 'address'
+          }
+        ],
+        data1: [{
+            name: 'John Brown',
+            age: 18,
+            address: 'New York No. 1 Lake Park',
+            date: '2016-10-03'
+          },
+          {
+            name: 'Jim Green',
+            age: 24,
+            address: 'London No. 1 Lake Park',
+            date: '2016-10-01'
+          },
+          {
+            name: 'Joe Black',
+            age: 30,
+            address: 'Sydney No. 1 Lake Park',
+            date: '2016-10-02'
+          },
+          {
+            name: 'Jon Snow',
+            age: 26,
+            address: 'Ottawa No. 2 Lake Park',
+            date: '2016-10-04'
+          },
+          {
+            name: 'John Brown',
+            age: 18,
+            address: 'New York No. 1 Lake Park',
+            date: '2016-10-03'
+          },
+          {
+            name: 'Jim Green',
+            age: 24,
+            address: 'London No. 1 Lake Park',
+            date: '2016-10-01'
+          },
+          {
+            name: 'Joe Black',
+            age: 30,
+            address: 'Sydney No. 1 Lake Park',
+            date: '2016-10-02'
+          },
+          {
+            name: 'Jon Snow',
+            age: 26,
+            address: 'Ottawa No. 2 Lake Park',
+            date: '2016-10-04'
+          },
+          {
+            name: 'John Brown',
+            age: 18,
+            address: 'New York No. 1 Lake Park',
+            date: '2016-10-03'
+          },
+          {
+            name: 'Jim Green',
+            age: 24,
+            address: 'London No. 1 Lake Park',
+            date: '2016-10-01'
+          },
+          {
+            name: 'Joe Black',
+            age: 30,
+            address: 'Sydney No. 1 Lake Park',
+            date: '2016-10-02'
+          },
+          {
+            name: 'Jon Snow',
+            age: 26,
+            address: 'Ottawa No. 2 Lake Park',
+            date: '2016-10-04'
+          }, {
+            name: 'John Brown',
+            age: 18,
+            address: 'New York No. 1 Lake Park',
+            date: '2016-10-03'
+          },
+          {
+            name: 'Jim Green',
+            age: 24,
+            address: 'London No. 1 Lake Park',
+            date: '2016-10-01'
+          },
+          {
+            name: 'Joe Black',
+            age: 30,
+            address: 'Sydney No. 1 Lake Park',
+            date: '2016-10-02'
+          },
+          {
+            name: 'Jon Snow',
+            age: 26,
+            address: 'Ottawa No. 2 Lake Park',
+            date: '2016-10-04'
+          }
+        ],
+        total: 100, // 总条数
+        currentPage: 1, // 当前页码
+        pageSize: 50, // 每页条数
+        checkedNodes: [], // 选中的数据
+        sortName: '', //
+        sortType: '', // ASC:顺序   DESC 倒叙
+        loading: false,
       }
     },
     methods: {
-      turnBack() {
-
+      add(){
+        this.$router.push({
+          name: 'roleAdd'
+        })
       },
       handleSubmit(name) {
-        this.$refs[name].validate((valid) => {
-          if (valid) {
-            this.$Message.success('Success!');
-          } else {
-            this.$Message.error('Fail!');
-          }
-        })
+
+      },
+      selectChange(selection) {
+        this.checkedNodes = selection
+      },
+      sortChange(data) {
+        if (data.order !== 'normal') {
+          this.sortName = data.key
+          this.sortType = data.order
+        }
+        this.data1.reverse()
+      },
+      onDblclick(data) {
+        console.log('onDblclick')
+        console.log(data)
+      },
+      changePage(pageNum) {
+        this.currentPage = pageNum
+      },
+      changePageSize(pageSize) {
+        this.pageSize = pageSize
       },
       handleReset(name) {
         this.$refs[name].resetFields();
@@ -248,65 +266,20 @@
   }
 </script>
 <style lang="less">
-  .pageTop {
-    height: 60px;
-    line-height: 60px;
-    padding: 0 20px 0 30px;
-    border-bottom: 2px solid #F0F2F5;
-
-    .fl {
-      float: left;
-    }
-
-    span {
-      color: #D8D8D8;
-      display: inline-block;
-      margin: 0 10px
-    }
-
-    a {
-      color: #6E7680
-    }
-
-    .fr a {
-      float: right;
-      font-size: 20px;
-    }
+  .operationStyle {
+    margin: 0 0 10px 10px;
   }
 
-  .addPageul {
-    padding: 40px 0 20px 30px;
-    list-style: none;
-
-    .ivu-select-not-found li {
-      width: 340px
-    }
-
-    .ivu-form-item-content {
-      width: 350px;
-    }
-
-    .add-page-item {
-      width: 520px;
-      float: left;
-
-      .ivu-input {
-        font-size: 12px;
-      }
-
-      textarea.ivu-input {
-        min-height: 52px;
-      }
-    }
-
-    .blank-form-item {
-      height: 36px;
-    }
+  .searchStyle {
+    margin: 10px 10px 0 10px;
   }
 
-  .submit-add {
-    clear: both;
-    width:80%;
+  .footer {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background-color: white;
     text-align: center;
+    vertical-align: middle;
   }
 </style>

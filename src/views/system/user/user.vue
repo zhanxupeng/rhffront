@@ -51,7 +51,7 @@
     </div>
 
     <div class="operationStyle">
-      <Button>新增</Button>
+      <Button @click="add">新增</Button>
       <Button>编辑</Button>
       <Button>删除</Button>
       <Button>启用</Button>
@@ -231,6 +231,11 @@
       }
     },
     methods: {
+      add(){
+        this.$router.push({
+          name: 'userAdd'
+        })
+      },
       handleSubmit(name) {
 
       },
