@@ -2,56 +2,21 @@
   <div class="layoutPage tree-grid-page">
     <Layout style="height: 100%;">
       <Sider class="tree-box" width='220' style="z-index:8;">
-        <Tree :data="data11" @on-select-change="treeSelectChange"></Tree>
+        <Tree :data="queryTreeList" @on-select-change="treeSelectChange"></Tree>
       </Sider>
       <Content class="grid-box">
 
         <div>
           <div class="searchStyle">
             <Form ref="formInline" :model="formInline" inline label-position="right" :label-width="100">
-              <FormItem prop="user" label="用户名">
-                <Input type="text" v-model="formInline.user" placeholder="Username"></Input>
+              <FormItem prop="name" label="菜单名称">
+                <Input type="text" v-model="formInline.name" placeholder="菜单名称"></Input>
               </FormItem>
-              <FormItem prop="password" label="密码">
-                <Input type="password" v-model="formInline.password" placeholder="Password"></Input>
-              </FormItem>
-              <FormItem prop="country" label="国家">
-                <Select v-model="formInline.country" placeholder="国家" style="width:169px">
-                  <Option value="beijing">New York</Option>
-                  <Option value="shanghai">London</Option>
-                  <Option value="shenzhen">Sydney</Option>
-                </Select>
-              </FormItem>
-              <FormItem prop="province" label="身份">
-                <Select v-model="formInline.province" placeholder="身份" style="width:169px">
-                  <Option value="beijing">New York</Option>
-                  <Option value="shanghai">London</Option>
-                  <Option value="shenzhen">Sydney</Option>
-                </Select>
-              </FormItem>
-              <FormItem prop="city" label="城市">
-                <Select v-model="formInline.city" placeholder="城市" style="width:169px">
-                  <Option value="beijing">New York</Option>
-                  <Option value="shanghai">London</Option>
-                  <Option value="shenzhen">Sydney</Option>
-                </Select>
-              </FormItem>
-              <FormItem prop="city1" label="城市">
-                <Select v-model="formInline.city1" placeholder="城市" style="width:169px">
-                  <Option value="beijing">New York</Option>
-                  <Option value="shanghai">London</Option>
-                  <Option value="shenzhen">Sydney</Option>
-                </Select>
-              </FormItem>
-              <FormItem prop="city2" label="城市">
-                <Select v-model="formInline.city2" placeholder="城市" style="width:169px">
-                  <Option value="beijing">New York</Option>
-                  <Option value="shanghai">London</Option>
-                  <Option value="shenzhen">Sydney</Option>
-                </Select>
+              <FormItem prop="code" label="菜单编号">
+                <Input type="text" v-model="formInline.code" placeholder="菜单编号"></Input>
               </FormItem>
               <FormItem>
-                <Button type="primary" @click="handleSubmit('formInline')">查询</Button>
+                <Button type="primary" @click="handleSubmit">查询</Button>
                 <Button @click="handleReset('formInline')" style="margin-left: 8px">重置</Button>
               </FormItem>
             </Form>
@@ -66,14 +31,12 @@
           </div>
           <div>
             <div>
-              <Table height="500" :columns="columns1" :data="data1" :loading="loading" @on-selection-change="selectChange"
-                @on-sort-change="sortChange" @on-row-dblclick="onDblclick">
+              <Table height="500" :columns="columns1" :data="data1" :loading="loading" @on-selection-change="selectChange" @on-sort-change="sortChange" @on-row-dblclick="onDblclick">
               </Table>
 
             </div>
             <div class="pageStyle footer">
-              <Page :total="total" show-elevator show-total show-sizer :page-size-opts="[10,20,50,100]" @on-change="changePage"
-                @on-page-size-change="changePageSize" />
+              <Page :total="total" show-elevator show-total show-sizer :page-size-opts="[10,20,50,100]" @on-change="changePage" @on-page-size-change="changePageSize" />
             </div>
           </div>
 
@@ -84,293 +47,290 @@
   </div>
 </template>
 <script>
-  export default {
-    data() {
-      return {
-        data11: [{
-          title: 'parent 1',
-          value: '1',
-          expand: true,
-          children: [{
-              title: 'parent 1-1',
-              value: '1-1',
-              expand: true,
-              children: [{
-                  title: 'leaf 1-1-1',
-                  value: '1-1-1'
-                },
-                {
-                  title: 'leaf 1-1-2',
-                  value: '1-1-2'
-                }
-              ]
-            },
-            {
-              title: 'parent 1-2',
-              value: '1-2',
-              expand: true,
-              children: [{
-                  title: 'leaf 1-2-1',
-                  value: '1-2-1'
-                },
-                {
-                  title: 'leaf 1-2-2',
-                  value: '1-2-2'
-                }
-              ]
-            }
-          ]
-        }],
-
-        formInline: {
-          user: '',
-          password: ''
+export default {
+  data() {
+    return {
+      queryTreeList: [],
+      formInline: {
+        name: "",
+        code: "",
+        parentId: ""
+      },
+      columns1: [
+        {
+          type: "index",
+          width: 70,
+          title: "序号"
         },
-        ruleInline: {
-          user: [{
-            required: true,
-            message: 'Please fill in the user name',
-            trigger: 'blur'
-          }],
-          password: [{
-              required: true,
-              message: 'Please fill in the password.',
-              trigger: 'blur'
-            },
-            {
-              type: 'string',
-              min: 6,
-              message: 'The password length cannot be less than 6 bits',
-              trigger: 'blur'
-            }
-          ]
+        {
+          type: "selection",
+          width: 60,
+          align: "center"
         },
-
-        columns1: [{
-            type: 'index',
-            width: 70,
-            title: '序号'
-          },
-          {
-            type: 'selection',
-            width: 60,
-            align: 'center'
-          },
-          {
-            title: 'Name',
-            key: 'name',
-            sortable: 'custom'
-          },
-          {
-            title: 'Age',
-            key: 'age'
-          },
-          {
-            title: 'Address',
-            key: 'address'
-          }
-        ],
-        data1: [{
-            name: 'John Brown',
-            age: 18,
-            address: 'New York No. 1 Lake Park',
-            date: '2016-10-03'
-          },
-          {
-            name: 'Jim Green',
-            age: 24,
-            address: 'London No. 1 Lake Park',
-            date: '2016-10-01'
-          },
-          {
-            name: 'Joe Black',
-            age: 30,
-            address: 'Sydney No. 1 Lake Park',
-            date: '2016-10-02'
-          },
-          {
-            name: 'Jon Snow',
-            age: 26,
-            address: 'Ottawa No. 2 Lake Park',
-            date: '2016-10-04'
-          },
-          {
-            name: 'John Brown',
-            age: 18,
-            address: 'New York No. 1 Lake Park',
-            date: '2016-10-03'
-          },
-          {
-            name: 'Jim Green',
-            age: 24,
-            address: 'London No. 1 Lake Park',
-            date: '2016-10-01'
-          },
-          {
-            name: 'Joe Black',
-            age: 30,
-            address: 'Sydney No. 1 Lake Park',
-            date: '2016-10-02'
-          },
-          {
-            name: 'Jon Snow',
-            age: 26,
-            address: 'Ottawa No. 2 Lake Park',
-            date: '2016-10-04'
-          },
-          {
-            name: 'John Brown',
-            age: 18,
-            address: 'New York No. 1 Lake Park',
-            date: '2016-10-03'
-          },
-          {
-            name: 'Jim Green',
-            age: 24,
-            address: 'London No. 1 Lake Park',
-            date: '2016-10-01'
-          },
-          {
-            name: 'Joe Black',
-            age: 30,
-            address: 'Sydney No. 1 Lake Park',
-            date: '2016-10-02'
-          },
-          {
-            name: 'Jon Snow',
-            age: 26,
-            address: 'Ottawa No. 2 Lake Park',
-            date: '2016-10-04'
-          }, {
-            name: 'John Brown',
-            age: 18,
-            address: 'New York No. 1 Lake Park',
-            date: '2016-10-03'
-          },
-          {
-            name: 'Jim Green',
-            age: 24,
-            address: 'London No. 1 Lake Park',
-            date: '2016-10-01'
-          },
-          {
-            name: 'Joe Black',
-            age: 30,
-            address: 'Sydney No. 1 Lake Park',
-            date: '2016-10-02'
-          },
-          {
-            name: 'Jon Snow',
-            age: 26,
-            address: 'Ottawa No. 2 Lake Park',
-            date: '2016-10-04'
-          }
-        ],
-        total: 100, // 总条数
-        currentPage: 1, // 当前页码
-        pageSize: 50, // 每页条数
-        checkedNodes: [], // 选中的数据
-        sortName: '', //
-        sortType: '', // ASC:顺序   DESC 倒叙
-        loading: false
-
+        {
+          title: "名称",
+          key: "name",
+          sortable: "custom"
+        },
+        {
+          title: "编码",
+          key: "code"
+        },
+        {
+          title: "图标",
+          key: "icon"
+        },
+        {
+          title: "路径",
+          key: "url"
+        },
+        {
+          title: "父级菜单",
+          key: "parentName"
+        },
+        {
+          title: "首路径",
+          key: "indexPath"
+        },
+        {
+          title: "是否激活",
+          key: "activeFlagShow"
+        },
+        {
+          title: "是否显示",
+          key: "showFlagShow"
+        },
+        {
+          title: "排序",
+          key: "orderNo"
+        }
+      ],
+      data1: [
+        {
+          name: "John Brown",
+          age: 18,
+          address: "New York No. 1 Lake Park",
+          date: "2016-10-03"
+        },
+        {
+          name: "Jim Green",
+          age: 24,
+          address: "London No. 1 Lake Park",
+          date: "2016-10-01"
+        },
+        {
+          name: "Joe Black",
+          age: 30,
+          address: "Sydney No. 1 Lake Park",
+          date: "2016-10-02"
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
+        },
+        {
+          name: "John Brown",
+          age: 18,
+          address: "New York No. 1 Lake Park",
+          date: "2016-10-03"
+        },
+        {
+          name: "Jim Green",
+          age: 24,
+          address: "London No. 1 Lake Park",
+          date: "2016-10-01"
+        },
+        {
+          name: "Joe Black",
+          age: 30,
+          address: "Sydney No. 1 Lake Park",
+          date: "2016-10-02"
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
+        },
+        {
+          name: "John Brown",
+          age: 18,
+          address: "New York No. 1 Lake Park",
+          date: "2016-10-03"
+        },
+        {
+          name: "Jim Green",
+          age: 24,
+          address: "London No. 1 Lake Park",
+          date: "2016-10-01"
+        },
+        {
+          name: "Joe Black",
+          age: 30,
+          address: "Sydney No. 1 Lake Park",
+          date: "2016-10-02"
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
+        },
+        {
+          name: "John Brown",
+          age: 18,
+          address: "New York No. 1 Lake Park",
+          date: "2016-10-03"
+        },
+        {
+          name: "Jim Green",
+          age: 24,
+          address: "London No. 1 Lake Park",
+          date: "2016-10-01"
+        },
+        {
+          name: "Joe Black",
+          age: 30,
+          address: "Sydney No. 1 Lake Park",
+          date: "2016-10-02"
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
+        }
+      ],
+      total: 100, // 总条数
+      currentPage: 1, // 当前页码
+      pageSize: 50, // 每页条数
+      checkedNodes: [], // 选中的数据
+      sortName: "", //
+      sortType: "", // ASC:顺序   DESC 倒叙
+      loading: false
+    };
+  },
+  mounted() {
+    this.getQueryTreeList();
+    this.handleSubmit();
+  },
+  methods: {
+    getQueryTreeList() {
+      this.API.menu.queryTree().then(res => {
+        if (res.code === "0") {
+          this.queryTreeList = res.data;
+        }
+      });
+    },
+    add() {
+      this.$router.push({
+        name: "menuAdd"
+      });
+    },
+    treeSelectChange(checked) {
+      if (checked.length > 0) {
+        this.formInline.parentId = checked[0].value;
+        this.handleSubmit();
       }
     },
-    methods: {
-      add() {
-        this.$router.push({
-          name: 'menuAdd'
-        })
-      },
-      treeSelectChange(checked) {
-        if (checked.length > 0) {
-          console.log(checked[0].value)
+    handleSubmit() {
+      let request = {
+        pageNum: this.currentPage,
+        pageSize: this.pageSize,
+        sortName: this.sortName,
+        sortType: this.sortType,
+        entity: this.formInline
+      };
+      this.API.menu.query(request).then(res => {
+        if (res.code === "0") {
+          this.data1 = res.data.data;
         }
-      },
-      handleSubmit(name) {
-
-      },
-      selectChange(selection) {
-        this.checkedNodes = selection
-      },
-      sortChange(data) {
-        if (data.order !== 'normal') {
-          this.sortName = data.key
-          this.sortType = data.order
-        }
-        this.data1.reverse()
-      },
-      onDblclick(data) {
-        console.log('onDblclick')
-        console.log(data)
-      },
-      changePage(pageNum) {
-        this.currentPage = pageNum
-      },
-      changePageSize(pageSize) {
-        this.pageSize = pageSize
-      },
-      handleReset(name) {
-        this.$refs[name].resetFields();
+      });
+    },
+    selectChange(selection) {
+      this.checkedNodes = selection;
+    },
+    sortChange(data) {
+      if (data.order !== "normal") {
+        this.sortName = data.key;
+        this.sortType = data.order;
       }
+      this.getQueryTreeList();
+    },
+    onDblclick(data) {
+
+    },
+    changePage(pageNum) {
+      this.currentPage = pageNum;
+      this.getQueryTreeList();
+    },
+    changePageSize(pageSize) {
+      this.pageSize = pageSize;
+      this.getQueryTreeList();
+    },
+    handleReset(name) {
+      this.$refs[name].resetFields();
     }
   }
+};
 </script>
 <style lang="less">
-  .tree-grid-page {
-    .tree-box {
-      .ivu-layout-sider-children {
-        padding-top: 31px;
-        padding-left: 10px;
+.tree-grid-page {
+  .tree-box {
+    .ivu-layout-sider-children {
+      padding-top: 31px;
+      padding-left: 10px;
 
-        .ivu-tree-title {
-          font-size: 12px;
-          border-radius: 4px;
-        }
+      .ivu-tree-title {
+        font-size: 12px;
+        border-radius: 4px;
+      }
 
-        .ivu-tree-title-selected,
-        .ivu-tree-title-selected:hover {
-          background: #1f82fb;
-          color: #fff;
-        }
+      .ivu-tree-title-selected,
+      .ivu-tree-title-selected:hover {
+        background: #1f82fb;
+        color: #fff;
       }
     }
-
-    .grid-box {
-      margin-left: 10px;
-      overflow: hidden;
-      background-color: #fff;
-    }
   }
 
-  .layoutPage {
-    #page-wrapper {
-      padding-top: 0;
-    }
+  .grid-box {
+    margin-left: 10px;
+    overflow: hidden;
+    background-color: #fff;
+  }
+}
 
-    .page-inner.content-inner {
-      margin-top: 0;
-    }
-
-    .ivu-layout-sider {
-      background: #fff;
-    }
+.layoutPage {
+  #page-wrapper {
+    padding-top: 0;
   }
 
-  .operationStyle {
-    margin: 0 0 10px 10px;
+  .page-inner.content-inner {
+    margin-top: 0;
   }
 
-  .searchStyle {
-    margin: 10px 10px 0 10px;
+  .ivu-layout-sider {
+    background: #fff;
   }
+}
 
-  .footer {
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    background-color: white;
-    text-align: center;
-    vertical-align: middle;
-  }
+.operationStyle {
+  margin: 0 0 10px 10px;
+}
+
+.searchStyle {
+  margin: 10px 10px 0 10px;
+}
+
+.footer {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background-color: white;
+  text-align: center;
+  vertical-align: middle;
+}
 </style>
