@@ -29,6 +29,9 @@ const menu = {
     },
     add(param){
         return jsonPost(baseURL + '/websys/menu/add.do',param)
+    },
+    del(param){
+        return jsonPost(baseURL + '/websys/menu/delete.do',param)
     }
 }
 

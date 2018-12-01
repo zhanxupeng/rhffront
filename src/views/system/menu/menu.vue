@@ -25,7 +25,7 @@
           <div class="operationStyle">
             <Button @click="add">新增</Button>
             <Button>编辑</Button>
-            <Button>删除</Button>
+            <Button @click="del">删除</Button>
             <Button>启用</Button>
             <Button>停用</Button>
           </div>
@@ -228,6 +228,28 @@ export default {
       this.$router.push({
         name: "menuAdd"
       });
+    },
+    del(){
+      let that =this
+      if(that.checkedNodes.length === 0){
+          that.$Message.error('必须选择一条数据')
+          return
+      }
+      console.log("that")
+      console.log(that.checkedNodes)
+      let request = that.checkedNodes.map( x => {
+        return {
+          urid:x.urid,
+          version:x.version
+        }
+      })
+      that.API.menu.del(request).then(res => {
+        if(res.code === '0'){
+          that.$Message.success(res.info);
+          this.tableQuery()
+        }
+      })
+    
     },
     treeSelectChange(checked) {
       if (checked.length > 0) {
