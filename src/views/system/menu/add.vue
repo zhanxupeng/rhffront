@@ -12,145 +12,58 @@
     </div>
 
     <div>
-      <Form
-        ref="formValidate"
-        :model="formValidate"
-        :rules="ruleValidate"
-        :label-width="100"
-        :label-position="'left'"
-      >
+      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="100" :label-position="'right'">
         <Scroll :height="500">
           <ul class="addPageul">
             <li class="add-page-item">
-              <FormItem label="名字" prop="name">
-                <Input v-model="formValidate.name" placeholder="Enter your name"></Input>
+              <FormItem label="菜单名称" prop="name">
+                <Input v-model="formValidate.name" placeholder="菜单名称"></Input>
               </FormItem>
             </li>
             <li class="add-page-item">
-              <FormItem label="邮箱" prop="mail">
-                <Input v-model="formValidate.mail" placeholder="Enter your e-mail"></Input>
+              <FormItem label="菜单代码" prop="code">
+                <Input v-model="formValidate.code" placeholder="菜单代码"></Input>
               </FormItem>
             </li>
             <li class="add-page-item">
-              <FormItem label="城市" prop="city">
-                <Select v-model="formValidate.city" placeholder="Select your city">
-                  <Option value="beijing">New York</Option>
-                  <Option value="shanghai">London</Option>
-                  <Option value="shenzhen">Sydney</Option>
+              <FormItem label="图标" prop="icon">
+                <Input v-model="formValidate.icon" placeholder="图标"></Input>
+              </FormItem>
+            </li>
+            <li class="add-page-item">
+              <FormItem label="地址" prop="url">
+                <Input v-model="formValidate.url" placeholder="地址"></Input>
+              </FormItem>
+            </li>
+            <li class="add-page-item">
+              <FormItem label="父级菜单" prop="parentId">
+                <Input v-model="formValidate.parentId" placeholder="父级菜单"></Input>
+              </FormItem>
+            </li>
+            <li class="add-page-item">
+              <FormItem label="首路径" prop="indexPath">
+                <Input v-model="formValidate.indexPath" placeholder="首路径"></Input>
+              </FormItem>
+            </li>
+            <li class="add-page-item">
+              <FormItem label="排序" prop="orderNo">
+                <Input v-model="formValidate.orderNo" placeholder="排序"></Input>
+              </FormItem>
+            </li>
+            <li class="add-page-item">
+              <FormItem label="是否活跃" prop="activeFlag">
+                <Select v-model="formValidate.activeFlag">
+                  <Option value="1" key="1">是</Option>
+                  <Option value="0" key="0">否</Option>
                 </Select>
               </FormItem>
             </li>
             <li class="add-page-item">
-              <FormItem label="性别" prop="gender">
-                <RadioGroup v-model="formValidate.gender">
-                  <Radio label="male">Male</Radio>
-                  <Radio label="female">Female</Radio>
-                </RadioGroup>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="爱好" prop="interest">
-                <CheckboxGroup v-model="formValidate.interest">
-                  <Checkbox label="Eat"></Checkbox>
-                  <Checkbox label="Sleep"></Checkbox>
-                  <Checkbox label="Run"></Checkbox>
-                  <Checkbox label="Movie"></Checkbox>
-                </CheckboxGroup>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="描述" prop="desc">
-                <Input
-                  v-model="formValidate.desc"
-                  type="textarea"
-                  :autosize="{minRows: 2,maxRows: 5}"
-                  placeholder="Enter something..."
-                ></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
+              <FormItem label="是否显示" prop="showFlag">
+                <Select v-model="formValidate.showFlag">
+                  <Option value="1" key="1">是</Option>
+                  <Option value="0" key="0">否</Option>
+                </Select>
               </FormItem>
             </li>
           </ul>
@@ -173,82 +86,79 @@ export default {
       menuTitle: "",
       title: "新增",
       formValidate: {
-        name: "",
-        mail: "",
-        city: "",
-        gender: "",
-        interest: [],
-        date: "",
-        time: "",
-        desc: ""
+        name: '',
+        code:'',
+        icon:'',
+        url:'',
+        parentId:'',
+        indexPath:'',
+        orderNo:null,
+        activeFlag:'',
+        showFlag:''
       },
       ruleValidate: {
         name: [
           {
             required: true,
-            message: "The name cannot be empty",
+            message: "菜单名称不能为空",
             trigger: "blur"
           }
         ],
-        mail: [
+        code: [
           {
             required: true,
-            message: "Mailbox cannot be empty",
-            trigger: "blur"
-          },
-          {
-            type: "email",
-            message: "Incorrect email format",
+            message: "菜单代码不能为空",
             trigger: "blur"
           }
         ],
-        city: [
+        icon: [],
+        url: [
           {
             required: true,
-            message: "Please select the city",
+            message: "路径不能为空",
             trigger: "change"
           }
         ],
-        gender: [
+        parentId:[
           {
             required: true,
-            message: "Please select gender",
+            message: "父菜单不能为空",
             trigger: "change"
           }
         ],
-        interest: [
+        indexPath:[
           {
             required: true,
-            type: "array",
-            min: 1,
-            message: "Choose at least one hobby",
-            trigger: "change"
-          },
-          {
-            type: "array",
-            max: 2,
-            message: "Choose two hobbies at best",
+            message: "首路径不能为空",
             trigger: "change"
           }
         ],
-        desc: [
+        orderNo:[
           {
             required: true,
-            message: "Please enter a personal introduction",
-            trigger: "blur"
-          },
+            message: "排序不能为空",
+            trigger: "change"
+          }
+        ],
+        activeFlag:[
           {
-            type: "string",
-            min: 20,
-            message: "Introduce no less than 20 words",
-            trigger: "blur"
+            required: true,
+            message: "激活标记不能为空",
+            trigger: "change"
+          }
+        ],
+        showFlag:[
+          {
+            required: true,
+            message: "显示标记不能为空",
+            trigger: "change"
           }
         ]
       }
     };
   },
-  mounted(){
-    this.menuTitle=this.$root.$data.menuTitle
+  mounted() {
+    this.menuTitle = this.$root.$data.menuTitle;
   },
   methods: {
     turnBack() {
@@ -257,11 +167,17 @@ export default {
       });
     },
     handleSubmit(name) {
-      this.$refs[name].validate(valid => {
+      let that=this
+      that.$refs[name].validate(valid => {
         if (valid) {
-          this.$Message.success("Success!");
-        } else {
-          this.$Message.error("Fail!");
+          that.API.menu.add(that.formValidate).then( res=>{
+            if(res.code === '0'){
+              that.$Message.success(res.info);
+              that.$router.push({
+                name:'menuList'
+              })
+            }
+          })
         }
       });
     },

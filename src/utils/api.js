@@ -26,6 +26,9 @@ const menu = {
     },
     query(param) {
         return jsonPost(baseURL + '/websys/menu/query.do', param)
+    },
+    add(param){
+        return jsonPost(baseURL + '/websys/menu/add.do',param)
     }
 }
 
