@@ -16,7 +16,7 @@
                 <Input type="text" v-model="formInline.code" placeholder="菜单编号"></Input>
               </FormItem>
               <FormItem>
-                <Button type="primary" @click="handleSubmit">查询</Button>
+                <Button type="primary" @click="tableQuery">查询</Button>
                 <Button @click="handleReset('formInline')" style="margin-left: 8px">重置</Button>
               </FormItem>
             </Form>
@@ -213,14 +213,14 @@ export default {
     };
   },
   mounted() {
-    this.getQueryTreeList();
-    this.handleSubmit();
+    this.getQueryTreeList()
+    this.tableQuery()
   },
   methods: {
     getQueryTreeList() {
       this.API.menu.queryTree().then(res => {
         if (res.code === "0") {
-          this.queryTreeList = res.data;
+          this.queryTreeList = res.data
         }
       });
     },
@@ -231,11 +231,11 @@ export default {
     },
     treeSelectChange(checked) {
       if (checked.length > 0) {
-        this.formInline.parentId = checked[0].value;
-        this.handleSubmit();
+        this.formInline.parentId = checked[0].value
+        this.tableQuery()
       }
     },
-    handleSubmit() {
+    tableQuery() {
       let request = {
         pageNum: this.currentPage,
         pageSize: this.pageSize,
@@ -245,33 +245,34 @@ export default {
       };
       this.API.menu.query(request).then(res => {
         if (res.code === "0") {
-          this.data1 = res.data.data;
+          this.data1 = res.data.data
         }
       });
     },
     selectChange(selection) {
-      this.checkedNodes = selection;
+      this.checkedNodes = selection
     },
     sortChange(data) {
       if (data.order !== "normal") {
-        this.sortName = data.key;
-        this.sortType = data.order;
+        this.sortName = data.key
+        this.sortType = data.order
       }
-      this.getQueryTreeList();
+      this.tableQuery()
     },
     onDblclick(data) {
 
     },
     changePage(pageNum) {
-      this.currentPage = pageNum;
-      this.getQueryTreeList();
+      this.currentPage = pageNum
+      this.tableQuery()
     },
     changePageSize(pageSize) {
-      this.pageSize = pageSize;
-      this.getQueryTreeList();
+      this.pageSize = pageSize
+      this.tableQuery()
     },
     handleReset(name) {
-      this.$refs[name].resetFields();
+      this.$refs[name].resetFields()
+      this.tableQuery()
     }
   }
 };
