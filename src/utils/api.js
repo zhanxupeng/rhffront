@@ -32,6 +32,18 @@ const menu = {
     },
     del(param){
         return jsonPost(baseURL + '/websys/menu/delete.do',param)
+    },
+    getById(param){
+        return fetch(baseURL + '/websys/menu/getById.do',param)
+    },
+    edit(param){
+        return jsonPost(baseURL + '/websys/menu/edit.do',param)
+    },
+    enable(param){
+        return jsonPost(baseURL + '/websys/menu/enable.do',param)
+    },
+    disable(param){
+        return jsonPost(baseURL + '/websys/menu/disable.do',param)
     }
 }
 

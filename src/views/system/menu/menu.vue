@@ -1,42 +1,91 @@
 <template>
   <div class="layoutPage tree-grid-page">
     <Layout style="height: 100%;">
-      <Sider class="tree-box" width='220' style="z-index:8;">
-        <Tree :data="queryTreeList" @on-select-change="treeSelectChange"></Tree>
+      <Sider
+        class="tree-box"
+        width='220'
+        style="z-index:8;"
+      >
+        <Tree
+          :data="queryTreeList"
+          @on-select-change="treeSelectChange"
+        ></Tree>
       </Sider>
       <Content class="grid-box">
 
         <div>
           <div class="searchStyle">
-            <Form ref="formInline" :model="formInline" inline label-position="right" :label-width="100">
-              <FormItem prop="name" label="菜单名称">
-                <Input type="text" v-model="formInline.name" placeholder="菜单名称"></Input>
+            <Form
+              ref="formInline"
+              :model="formInline"
+              inline
+              label-position="right"
+              :label-width="100"
+            >
+              <FormItem
+                prop="name"
+                label="菜单名称"
+              >
+                <Input
+                  type="text"
+                  v-model="formInline.name"
+                  placeholder="菜单名称"
+                ></Input>
               </FormItem>
-              <FormItem prop="code" label="菜单编号">
-                <Input type="text" v-model="formInline.code" placeholder="菜单编号"></Input>
+              <FormItem
+                prop="code"
+                label="菜单编号"
+              >
+                <Input
+                  type="text"
+                  v-model="formInline.code"
+                  placeholder="菜单编号"
+                ></Input>
               </FormItem>
               <FormItem>
-                <Button type="primary" @click="tableQuery">查询</Button>
-                <Button @click="handleReset('formInline')" style="margin-left: 8px">重置</Button>
+                <Button
+                  type="primary"
+                  @click="tableQuery"
+                >查询</Button>
+                <Button
+                  @click="handleReset('formInline')"
+                  style="margin-left: 8px"
+                >重置</Button>
               </FormItem>
             </Form>
           </div>
 
           <div class="operationStyle">
             <Button @click="add">新增</Button>
-            <Button>编辑</Button>
+            <Button @click="edit">编辑</Button>
             <Button @click="del">删除</Button>
-            <Button>启用</Button>
-            <Button>停用</Button>
+            <Button @click="enable">启用</Button>
+            <Button @click="disable">停用</Button>
           </div>
           <div>
             <div>
-              <Table height="500" :columns="columns1" :data="data1" :loading="loading" @on-selection-change="selectChange" @on-sort-change="sortChange" @on-row-dblclick="onDblclick">
+              <Table
+                height="500"
+                :columns="columns1"
+                :data="data1"
+                :loading="loading"
+                @on-selection-change="selectChange"
+                @on-sort-change="sortChange"
+                @on-row-dblclick="onDblclick"
+              >
               </Table>
 
             </div>
             <div class="pageStyle footer">
-              <Page :total="total" show-elevator show-total show-sizer :page-size-opts="[10,20,50,100]" @on-change="changePage" @on-page-size-change="changePageSize" />
+              <Page
+                :total="total"
+                show-elevator
+                show-total
+                show-sizer
+                :page-size-opts="[10,20,50,100]"
+                @on-change="changePage"
+                @on-page-size-change="changePageSize"
+              />
             </div>
           </div>
 
@@ -105,104 +154,7 @@ export default {
           key: "orderNo"
         }
       ],
-      data1: [
-        {
-          name: "John Brown",
-          age: 18,
-          address: "New York No. 1 Lake Park",
-          date: "2016-10-03"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "John Brown",
-          age: 18,
-          address: "New York No. 1 Lake Park",
-          date: "2016-10-03"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "John Brown",
-          age: 18,
-          address: "New York No. 1 Lake Park",
-          date: "2016-10-03"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        },
-        {
-          name: "John Brown",
-          age: 18,
-          address: "New York No. 1 Lake Park",
-          date: "2016-10-03"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          address: "London No. 1 Lake Park",
-          date: "2016-10-01"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          address: "Sydney No. 1 Lake Park",
-          date: "2016-10-02"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          address: "Ottawa No. 2 Lake Park",
-          date: "2016-10-04"
-        }
-      ],
+      data1: [],
       total: 100, // 总条数
       currentPage: 1, // 当前页码
       pageSize: 50, // 每页条数
@@ -213,14 +165,14 @@ export default {
     };
   },
   mounted() {
-    this.getQueryTreeList()
-    this.tableQuery()
+    this.getQueryTreeList();
+    this.tableQuery();
   },
   methods: {
     getQueryTreeList() {
       this.API.menu.queryTree().then(res => {
         if (res.code === "0") {
-          this.queryTreeList = res.data
+          this.queryTreeList = res.data;
         }
       });
     },
@@ -229,32 +181,118 @@ export default {
         name: "menuAdd"
       });
     },
-    del(){
-      let that =this
-      if(that.checkedNodes.length === 0){
-          that.$Message.error('必须选择一条数据')
-          return
+    edit() {
+      let that = this;
+      if (that.checkedNodes.length !== 1) {
+        that.$Message.warning("请选择一条操作记录！");
+        return;
       }
-      console.log("that")
-      console.log(that.checkedNodes)
-      let request = that.checkedNodes.map( x => {
+
+      that.$router.push({
+        name: "menuAdd",
+        query: {
+          id: that.checkedNodes[0].urid
+        }
+      });
+    },
+    enable() {
+      let that = this;
+      if (that.checkedNodes.length === 0) {
+        that.$Message.error("必须选择一条数据");
+        return;
+      }
+
+      let other = that.checkedNodes.filter(x => x.activeFlag !== "0");
+      if (other && other.length > 0) {
+        that.$Message.error("停用的菜单才能启用");
+        return;
+      }
+
+      let request = that.checkedNodes.map(x => {
         return {
-          urid:x.urid,
-          version:x.version
+          urid: x.urid,
+          version: x.version
+        };
+      });
+
+      this.$Modal.confirm({
+        title: "消息",
+        content: "是否确认启用?",
+        onOk() {
+          that.API.menu.enable(request).then(res => {
+            if (res.code === "0") {
+              that.$Message.success(res.info);
+              that.tableQuery();
+            }
+          });
         }
-      })
-      that.API.menu.del(request).then(res => {
-        if(res.code === '0'){
-          that.$Message.success(res.info);
-          this.tableQuery()
+      });
+    },
+    disable() {
+      let that = this;
+      if (that.checkedNodes.length === 0) {
+        that.$Message.error("必须选择一条数据");
+        return;
+      }
+
+      let other = that.checkedNodes.filter(x => x.activeFlag !== "1");
+      if (other && other.length > 0) {
+        that.$Message.error("启用的菜单才能停用");
+        return;
+      }
+
+      let request = that.checkedNodes.map(x => {
+        return {
+          urid: x.urid,
+          version: x.version
+        };
+      });
+
+      that.$Modal.confirm({
+        title: "消息",
+        content: "是否确认停用?",
+        onOk() {
+          that.API.menu.disable(request).then(res => {
+            if (res.code === "0") {
+              that.$Message.success(res.info);
+              that.tableQuery();
+            }
+          });
         }
-      })
-    
+      });
+    },
+    del() {
+      let that = this;
+      if (that.checkedNodes.length === 0) {
+        that.$Message.error("必须选择一条数据");
+        return;
+      }
+      console.log("that");
+      console.log(that.checkedNodes);
+      let request = that.checkedNodes.map(x => {
+        return {
+          urid: x.urid,
+          version: x.version
+        };
+      });
+
+      this.$Modal.confirm({
+        title: "消息",
+        content: "是否确认删除?",
+        onOk() {
+          that.API.menu.del(request).then(res => {
+            if (res.code === "0") {
+              that.$Message.success(res.info);
+              that.tableQuery();
+            }
+          });
+        }
+      });
     },
     treeSelectChange(checked) {
       if (checked.length > 0) {
-        this.formInline.parentId = checked[0].value
-        this.tableQuery()
+        this.formInline.parentId = checked[0].value;
+        this.tableQuery();
       }
     },
     tableQuery() {
@@ -267,34 +305,32 @@ export default {
       };
       this.API.menu.query(request).then(res => {
         if (res.code === "0") {
-          this.data1 = res.data.data
+          this.data1 = res.data.data;
         }
       });
     },
     selectChange(selection) {
-      this.checkedNodes = selection
+      this.checkedNodes = selection;
     },
     sortChange(data) {
       if (data.order !== "normal") {
-        this.sortName = data.key
-        this.sortType = data.order
+        this.sortName = data.key;
+        this.sortType = data.order;
       }
-      this.tableQuery()
+      this.tableQuery();
     },
-    onDblclick(data) {
-
-    },
+    onDblclick(data) {},
     changePage(pageNum) {
-      this.currentPage = pageNum
-      this.tableQuery()
+      this.currentPage = pageNum;
+      this.tableQuery();
     },
     changePageSize(pageSize) {
-      this.pageSize = pageSize
-      this.tableQuery()
+      this.pageSize = pageSize;
+      this.tableQuery();
     },
     handleReset(name) {
-      this.$refs[name].resetFields()
-      this.tableQuery()
+      this.$refs[name].resetFields();
+      this.tableQuery();
     }
   }
 };
