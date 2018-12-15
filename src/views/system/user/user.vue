@@ -2,45 +2,23 @@
   <div>
     <div class="searchStyle">
       <Form ref="formInline" :model="formInline" inline label-position="right" :label-width="100">
-        <FormItem prop="user" label="用户名">
-          <Input type="text" v-model="formInline.user" placeholder="Username"></Input>
+        <FormItem prop="name" label="用户姓名">
+          <Input type="text" v-model="formInline.name" placeholder="请输入用户姓名"></Input>
         </FormItem>
-        <FormItem prop="password" label="密码">
-          <Input type="password" v-model="formInline.password" placeholder="Password"></Input>
+        <FormItem prop="loginId" label="用户账号">
+          <Input type="text" v-model="formInline.loginId" placeholder="请输入用户账号"></Input>
         </FormItem>
-        <FormItem prop="country" label="国家">
-          <Select v-model="formInline.country" placeholder="国家" style="width:169px">
-            <Option value="beijing">New York</Option>
-            <Option value="shanghai">London</Option>
-            <Option value="shenzhen">Sydney</Option>
+        <FormItem prop="userStatus" label="用户状态">
+          <Select v-model="formInline.userStatus" placeholder="请输入用户状态" style="width:169px">
+            <Option value="0">正常</Option>
+            <Option value="1">注销</Option>
+            <Option value="2">冻结</Option>
           </Select>
         </FormItem>
-        <FormItem prop="province" label="身份">
-          <Select v-model="formInline.province" placeholder="身份" style="width:169px">
-            <Option value="beijing">New York</Option>
-            <Option value="shanghai">London</Option>
-            <Option value="shenzhen">Sydney</Option>
-          </Select>
-        </FormItem>
-        <FormItem prop="city" label="城市">
-          <Select v-model="formInline.city" placeholder="城市" style="width:169px">
-            <Option value="beijing">New York</Option>
-            <Option value="shanghai">London</Option>
-            <Option value="shenzhen">Sydney</Option>
-          </Select>
-        </FormItem>
-        <FormItem prop="city1" label="城市">
-          <Select v-model="formInline.city1" placeholder="城市" style="width:169px">
-            <Option value="beijing">New York</Option>
-            <Option value="shanghai">London</Option>
-            <Option value="shenzhen">Sydney</Option>
-          </Select>
-        </FormItem>
-        <FormItem prop="city2" label="城市">
-          <Select v-model="formInline.city2" placeholder="城市" style="width:169px">
-            <Option value="beijing">New York</Option>
-            <Option value="shanghai">London</Option>
-            <Option value="shenzhen">Sydney</Option>
+        <FormItem prop="lockStatus" label="锁定状态">
+          <Select v-model="formInline.lockStatus" placeholder="身份" style="width:169px">
+            <Option value="0">正常</Option>
+            <Option value="1">锁定</Option>
           </Select>
         </FormItem>
         <FormItem>
@@ -81,25 +59,6 @@
           user: '',
           password: ''
         },
-        ruleInline: {
-          user: [{
-            required: true,
-            message: 'Please fill in the user name',
-            trigger: 'blur'
-          }],
-          password: [{
-              required: true,
-              message: 'Please fill in the password.',
-              trigger: 'blur'
-            },
-            {
-              type: 'string',
-              min: 6,
-              message: 'The password length cannot be less than 6 bits',
-              trigger: 'blur'
-            }
-          ]
-        },
 
         columns1: [{
             type: 'index',
@@ -112,113 +71,52 @@
             align: 'center'
           },
           {
-            title: 'Name',
+            title: '用户姓名',
             key: 'name',
             sortable: 'custom'
           },
           {
-            title: 'Age',
-            key: 'age'
+            title: '用户账号',
+            key: 'loginId'
           },
           {
-            title: 'Address',
-            key: 'address'
+            title: '联系电话',
+            key: 'mobile'
+          },
+          {
+            title: '邮箱',
+            key: 'email'
+          },
+          {
+            title: '用户状态',
+            key: 'userStatus'
+          },
+          {
+            title: '锁定状态',
+            key: 'lockStatus'
+          },
+          {
+            title: '备注',
+            key: 'remark'
           }
         ],
         data1: [{
-            name: 'John Brown',
-            age: 18,
-            address: 'New York No. 1 Lake Park',
-            date: '2016-10-03'
+            name: '郑美丽',
+            loginId: 'zhengby',
+            mobile: '15356171125',
+            email: '1098481123@qq.com',
+            userStatus: '正常',
+            lockStatus: '正常',
+            remark: '暂无'
           },
           {
-            name: 'Jim Green',
-            age: 24,
-            address: 'London No. 1 Lake Park',
-            date: '2016-10-01'
-          },
-          {
-            name: 'Joe Black',
-            age: 30,
-            address: 'Sydney No. 1 Lake Park',
-            date: '2016-10-02'
-          },
-          {
-            name: 'Jon Snow',
-            age: 26,
-            address: 'Ottawa No. 2 Lake Park',
-            date: '2016-10-04'
-          },
-          {
-            name: 'John Brown',
-            age: 18,
-            address: 'New York No. 1 Lake Park',
-            date: '2016-10-03'
-          },
-          {
-            name: 'Jim Green',
-            age: 24,
-            address: 'London No. 1 Lake Park',
-            date: '2016-10-01'
-          },
-          {
-            name: 'Joe Black',
-            age: 30,
-            address: 'Sydney No. 1 Lake Park',
-            date: '2016-10-02'
-          },
-          {
-            name: 'Jon Snow',
-            age: 26,
-            address: 'Ottawa No. 2 Lake Park',
-            date: '2016-10-04'
-          },
-          {
-            name: 'John Brown',
-            age: 18,
-            address: 'New York No. 1 Lake Park',
-            date: '2016-10-03'
-          },
-          {
-            name: 'Jim Green',
-            age: 24,
-            address: 'London No. 1 Lake Park',
-            date: '2016-10-01'
-          },
-          {
-            name: 'Joe Black',
-            age: 30,
-            address: 'Sydney No. 1 Lake Park',
-            date: '2016-10-02'
-          },
-          {
-            name: 'Jon Snow',
-            age: 26,
-            address: 'Ottawa No. 2 Lake Park',
-            date: '2016-10-04'
-          }, {
-            name: 'John Brown',
-            age: 18,
-            address: 'New York No. 1 Lake Park',
-            date: '2016-10-03'
-          },
-          {
-            name: 'Jim Green',
-            age: 24,
-            address: 'London No. 1 Lake Park',
-            date: '2016-10-01'
-          },
-          {
-            name: 'Joe Black',
-            age: 30,
-            address: 'Sydney No. 1 Lake Park',
-            date: '2016-10-02'
-          },
-          {
-            name: 'Jon Snow',
-            age: 26,
-            address: 'Ottawa No. 2 Lake Park',
-            date: '2016-10-04'
+            name: '占旭鹏',
+            loginId: 'zhanxp',
+            mobile: '15356171125',
+            email: '1098481123@qq.com',
+            userStatus: '异常',
+            lockStatus: '锁定',
+            remark: '雪儿'
           }
         ],
         total: 100, // 总条数
@@ -231,7 +129,7 @@
       }
     },
     methods: {
-      add(){
+      add() {
         this.$router.push({
           name: 'userAdd'
         })

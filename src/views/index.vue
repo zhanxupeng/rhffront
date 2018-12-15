@@ -156,8 +156,6 @@
       },
       handleTabRemove(name) {
         let tabList = this.tabList;
-        console.log("tabList")
-        console.log(tabList)
         let removeIndex = -1
         for (let i = 0; i < this.tabList.length; i++) {
           if (tabList[i].name === name) {
@@ -165,11 +163,13 @@
           }
         }
         if (removeIndex !== -1) {
-          tabList.splice(removeIndex, 0)
+          tabList.splice(removeIndex, 1)
         }
       },
       selectMenu(name) {
         console.log(name)
+        console.log("当前的菜单")
+        console.log(this.tabList)
         let filterList = this.tabList.filter(x => x.name === name)
         if (filterList.length === 0) {
           let label = this.getLabelByName(this.menuList,name)

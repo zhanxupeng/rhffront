@@ -22,135 +22,18 @@
         <Scroll :height="500">
           <ul class="addPageul">
             <li class="add-page-item">
-              <FormItem label="名字" prop="name">
-                <Input v-model="formValidate.name" placeholder="Enter your name"></Input>
+              <FormItem label="角色编码" prop="code">
+                <Input v-model="formValidate.code" placeholder="请输入角色编码"></Input>
               </FormItem>
             </li>
             <li class="add-page-item">
-              <FormItem label="邮箱" prop="mail">
-                <Input v-model="formValidate.mail" placeholder="Enter your e-mail"></Input>
+              <FormItem label="角色名称" prop="name">
+                <Input v-model="formValidate.name" placeholder="请输入角色名称"></Input>
               </FormItem>
             </li>
             <li class="add-page-item">
-              <FormItem label="城市" prop="city">
-                <Select v-model="formValidate.city" placeholder="Select your city">
-                  <Option value="beijing">New York</Option>
-                  <Option value="shanghai">London</Option>
-                  <Option value="shenzhen">Sydney</Option>
-                </Select>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="性别" prop="gender">
-                <RadioGroup v-model="formValidate.gender">
-                  <Radio label="male">Male</Radio>
-                  <Radio label="female">Female</Radio>
-                </RadioGroup>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="爱好" prop="interest">
-                <CheckboxGroup v-model="formValidate.interest">
-                  <Checkbox label="Eat"></Checkbox>
-                  <Checkbox label="Sleep"></Checkbox>
-                  <Checkbox label="Run"></Checkbox>
-                  <Checkbox label="Movie"></Checkbox>
-                </CheckboxGroup>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="描述" prop="desc">
-                <Input
-                  v-model="formValidate.desc"
-                  type="textarea"
-                  :autosize="{minRows: 2,maxRows: 5}"
-                  placeholder="Enter something..."
-                ></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
-              </FormItem>
-            </li>
-            <li class="add-page-item">
-              <FormItem label="名字">
-                <Input placeholder="Enter your name"></Input>
+              <FormItem label="备注" prop="remark">
+                <Input v-model="formValidate.remark" placeholder="请输入备注" type="textarea" :rows="4"></Input>
               </FormItem>
             </li>
           </ul>
@@ -174,76 +57,25 @@ export default {
       title: "新增",
       formValidate: {
         name: "",
-        mail: "",
-        city: "",
-        gender: "",
-        interest: [],
-        date: "",
-        time: "",
-        desc: ""
+        code: "",
+        remark: ""
       },
       ruleValidate: {
         name: [
           {
             required: true,
-            message: "The name cannot be empty",
+            message: "角色名称不能为空",
             trigger: "blur"
           }
         ],
-        mail: [
+        code: [
           {
             required: true,
-            message: "Mailbox cannot be empty",
-            trigger: "blur"
-          },
-          {
-            type: "email",
-            message: "Incorrect email format",
+            message: "角色编码不能为空",
             trigger: "blur"
           }
         ],
-        city: [
-          {
-            required: true,
-            message: "Please select the city",
-            trigger: "change"
-          }
-        ],
-        gender: [
-          {
-            required: true,
-            message: "Please select gender",
-            trigger: "change"
-          }
-        ],
-        interest: [
-          {
-            required: true,
-            type: "array",
-            min: 1,
-            message: "Choose at least one hobby",
-            trigger: "change"
-          },
-          {
-            type: "array",
-            max: 2,
-            message: "Choose two hobbies at best",
-            trigger: "change"
-          }
-        ],
-        desc: [
-          {
-            required: true,
-            message: "Please enter a personal introduction",
-            trigger: "blur"
-          },
-          {
-            type: "string",
-            min: 20,
-            message: "Introduce no less than 20 words",
-            trigger: "blur"
-          }
-        ]
+        city: []
       }
     };
   },
