@@ -2,46 +2,11 @@
   <div>
     <div class="searchStyle">
       <Form ref="formInline" :model="formInline" inline label-position="right" :label-width="100">
-        <FormItem prop="user" label="用户名">
-          <Input type="text" v-model="formInline.user" placeholder="Username"></Input>
+        <FormItem prop="name" label="角色名称">
+          <Input type="text" v-model="formInline.name" placeholder="请输入角色名称"></Input>
         </FormItem>
-        <FormItem prop="password" label="密码">
-          <Input type="password" v-model="formInline.password" placeholder="Password"></Input>
-        </FormItem>
-        <FormItem prop="country" label="国家">
-          <Select v-model="formInline.country" placeholder="国家" style="width:169px">
-            <Option value="beijing">New York</Option>
-            <Option value="shanghai">London</Option>
-            <Option value="shenzhen">Sydney</Option>
-          </Select>
-        </FormItem>
-        <FormItem prop="province" label="身份">
-          <Select v-model="formInline.province" placeholder="身份" style="width:169px">
-            <Option value="beijing">New York</Option>
-            <Option value="shanghai">London</Option>
-            <Option value="shenzhen">Sydney</Option>
-          </Select>
-        </FormItem>
-        <FormItem prop="city" label="城市">
-          <Select v-model="formInline.city" placeholder="城市" style="width:169px">
-            <Option value="beijing">New York</Option>
-            <Option value="shanghai">London</Option>
-            <Option value="shenzhen">Sydney</Option>
-          </Select>
-        </FormItem>
-        <FormItem prop="city1" label="城市">
-          <Select v-model="formInline.city1" placeholder="城市" style="width:169px">
-            <Option value="beijing">New York</Option>
-            <Option value="shanghai">London</Option>
-            <Option value="shenzhen">Sydney</Option>
-          </Select>
-        </FormItem>
-        <FormItem prop="city2" label="城市">
-          <Select v-model="formInline.city2" placeholder="城市" style="width:169px">
-            <Option value="beijing">New York</Option>
-            <Option value="shanghai">London</Option>
-            <Option value="shenzhen">Sydney</Option>
-          </Select>
+        <FormItem prop="code" label="角色编号">
+          <Input type="text" v-model="formInline.code" placeholder="请输入角色编号"></Input>
         </FormItem>
         <FormItem>
           <Button type="primary" @click="handleSubmit('formInline')">查询</Button>
@@ -54,8 +19,11 @@
       <Button @click="add">新增</Button>
       <Button>编辑</Button>
       <Button>删除</Button>
-      <Button>启用</Button>
-      <Button>停用</Button>
+      <Button>分配用户</Button>
+      <Button>分配权限</Button>
+      <Button>导出</Button>
+      <Button>导出全部</Button>
+      <Button>字段配置</Button>
     </div>
     <div>
       <div>
@@ -78,27 +46,8 @@
       return {
 
         formInline: {
-          user: '',
-          password: ''
-        },
-        ruleInline: {
-          user: [{
-            required: true,
-            message: 'Please fill in the user name',
-            trigger: 'blur'
-          }],
-          password: [{
-              required: true,
-              message: 'Please fill in the password.',
-              trigger: 'blur'
-            },
-            {
-              type: 'string',
-              min: 6,
-              message: 'The password length cannot be less than 6 bits',
-              trigger: 'blur'
-            }
-          ]
+          name: '',
+          code: ''
         },
 
         columns1: [{
@@ -112,113 +61,28 @@
             align: 'center'
           },
           {
-            title: 'Name',
+            title: '角色名称',
             key: 'name',
             sortable: 'custom'
           },
           {
-            title: 'Age',
-            key: 'age'
+            title: '角色编号',
+            key: 'code'
           },
           {
-            title: 'Address',
-            key: 'address'
+            title: '备注',
+            key: 'remark'
           }
         ],
         data1: [{
-            name: 'John Brown',
-            age: 18,
-            address: 'New York No. 1 Lake Park',
-            date: '2016-10-03'
+            name: '系统管理员',
+            code: 'R06',
+            remark: '负责系统基本运维与系统参数设置的系统运维管理专员'
           },
           {
-            name: 'Jim Green',
-            age: 24,
-            address: 'London No. 1 Lake Park',
-            date: '2016-10-01'
-          },
-          {
-            name: 'Joe Black',
-            age: 30,
-            address: 'Sydney No. 1 Lake Park',
-            date: '2016-10-02'
-          },
-          {
-            name: 'Jon Snow',
-            age: 26,
-            address: 'Ottawa No. 2 Lake Park',
-            date: '2016-10-04'
-          },
-          {
-            name: 'John Brown',
-            age: 18,
-            address: 'New York No. 1 Lake Park',
-            date: '2016-10-03'
-          },
-          {
-            name: 'Jim Green',
-            age: 24,
-            address: 'London No. 1 Lake Park',
-            date: '2016-10-01'
-          },
-          {
-            name: 'Joe Black',
-            age: 30,
-            address: 'Sydney No. 1 Lake Park',
-            date: '2016-10-02'
-          },
-          {
-            name: 'Jon Snow',
-            age: 26,
-            address: 'Ottawa No. 2 Lake Park',
-            date: '2016-10-04'
-          },
-          {
-            name: 'John Brown',
-            age: 18,
-            address: 'New York No. 1 Lake Park',
-            date: '2016-10-03'
-          },
-          {
-            name: 'Jim Green',
-            age: 24,
-            address: 'London No. 1 Lake Park',
-            date: '2016-10-01'
-          },
-          {
-            name: 'Joe Black',
-            age: 30,
-            address: 'Sydney No. 1 Lake Park',
-            date: '2016-10-02'
-          },
-          {
-            name: 'Jon Snow',
-            age: 26,
-            address: 'Ottawa No. 2 Lake Park',
-            date: '2016-10-04'
-          }, {
-            name: 'John Brown',
-            age: 18,
-            address: 'New York No. 1 Lake Park',
-            date: '2016-10-03'
-          },
-          {
-            name: 'Jim Green',
-            age: 24,
-            address: 'London No. 1 Lake Park',
-            date: '2016-10-01'
-          },
-          {
-            name: 'Joe Black',
-            age: 30,
-            address: 'Sydney No. 1 Lake Park',
-            date: '2016-10-02'
-          },
-          {
-            name: 'Jon Snow',
-            age: 26,
-            address: 'Ottawa No. 2 Lake Park',
-            date: '2016-10-04'
+            name: '超级管理员',
+            code: 'R99',
+            address: '系统最大权限'
           }
         ],
         total: 100, // 总条数
@@ -231,7 +95,7 @@
       }
     },
     methods: {
-      add(){
+      add() {
         this.$router.push({
           name: 'roleAdd'
         })

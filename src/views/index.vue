@@ -119,6 +119,16 @@
               label: "日历"
             }],
             children: null
+          },
+          {
+            subMenuName: "3",
+            subMenuTitle:"交易查询",
+            type:"ios-filing",
+            itemList:[{
+              name:"/views/transaction/sellproduct",
+              label:"销售产品"
+            }],
+            children:null
           }
         ],
         tabList: [],
@@ -155,21 +165,21 @@
         this.$refs.side1.toggleCollapse();
       },
       handleTabRemove(name) {
-        let tabList = this.tabList;
-        console.log("tabList")
-        console.log(tabList)
-        let removeIndex = -1
-        for (let i = 0; i < this.tabList.length; i++) {
-          if (tabList[i].name === name) {
-            removeIndex = i
-          }
-        }
-        if (removeIndex !== -1) {
-          tabList.splice(removeIndex, 0)
-        }
+        // let removeIndex = -1
+        // for (let i = 0; i < this.tabList.length; i++) {
+        //   if (this.tabList[i].name === name) {
+        //     removeIndex = i
+        //   }
+        // }
+        // if (removeIndex !== -1) {
+        //   this.tabList.splice(removeIndex, 1)
+        // }
+        // console.log(this.tabList)
       },
       selectMenu(name) {
         console.log(name)
+        console.log("当前的菜单")
+        console.log(this.tabList)
         let filterList = this.tabList.filter(x => x.name === name)
         if (filterList.length === 0) {
           let label = this.getLabelByName(this.menuList,name)
