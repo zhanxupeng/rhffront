@@ -73,7 +73,7 @@
           <Tabs type="card" closable @on-tab-remove="handleTabRemove" v-model="currentTab">
             <TabPane key="default" name="/views/index" label="首页" />
             <template v-for="item in tabList">
-              <TabPane :label="item.label" :name="item.name" />
+              <TabPane :label="item.label" :name="item.name" :key="item.name"/>
             </template>
           </Tabs>
         </div>
@@ -132,7 +132,8 @@
           }
         ],
         tabList: [],
-        currentTab: "/views/index"
+        currentTab: "/views/index",
+        mainTab:"/views/index"
       };
     },
     mounted() {
@@ -142,6 +143,15 @@
     },
     watch: {
       currentTab(val) {
+        console.log("currentTab")
+        console.log(val)
+        if(val === this.mainTab){
+          this.$router.push({
+            path:val
+          })
+          return;
+        }
+        
         this.$root.$data.menuTitle = this.getMenuPrefix(val)
         this.$router.push({
           path: val
@@ -165,16 +175,16 @@
         this.$refs.side1.toggleCollapse();
       },
       handleTabRemove(name) {
-        // let removeIndex = -1
-        // for (let i = 0; i < this.tabList.length; i++) {
-        //   if (this.tabList[i].name === name) {
-        //     removeIndex = i
-        //   }
-        // }
-        // if (removeIndex !== -1) {
-        //   this.tabList.splice(removeIndex, 1)
-        // }
-        // console.log(this.tabList)
+        let removeIndex = -1
+        for (let i = 0; i < this.tabList.length; i++) {
+          if (this.tabList[i].name === name) {
+            removeIndex = i
+          }
+        }
+        if (removeIndex !== -1) {
+          this.tabList.splice(removeIndex, 1)
+        }
+        console.log(this.tabList)
       },
       selectMenu(name) {
         console.log(name)

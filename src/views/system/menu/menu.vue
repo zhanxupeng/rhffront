@@ -59,6 +59,7 @@
             <Button @click="add">新增</Button>
             <Button @click="edit">编辑</Button>
             <Button @click="del">删除</Button>
+            <Button @click="childrenFunction">子功能维护</Button>
             <Button @click="enable">启用</Button>
             <Button @click="disable">停用</Button>
           </div>
@@ -258,6 +259,20 @@ export default {
               that.tableQuery();
             }
           });
+        }
+      });
+    },
+    childrenFunction(){
+      let that = this;
+      if (that.checkedNodes.length !== 1) {
+        that.$Message.warning("请选择一条操作记录！");
+        return;
+      }
+
+      that.$router.push({
+        name: "menuOperationList",
+        query: {
+          id: that.checkedNodes[0].urid
         }
       });
     },

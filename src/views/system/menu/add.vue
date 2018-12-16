@@ -105,7 +105,10 @@
                 label="是否活跃"
                 prop="activeFlag"
               >
-                <Select v-model="formValidate.activeFlag" :disabled="type === '1'">
+                <Select
+                  v-model="formValidate.activeFlag"
+                  :disabled="type === '1'"
+                >
                   <Option
                     value="1"
                     key="1"
@@ -275,42 +278,37 @@ export default {
       let that = this;
       that.$refs[name].validate(valid => {
         if (valid) {
-          if(that.type === '0'){
-
-          that.API.menu.add(that.formValidate).then(res => {
-            if (res.code === "0") {
-              that.$Message.success(res.info);
-              that.$router.push({
-                name: "menuList"
-              });
-            }
-          });
-
-          }else{
-
-            let request={
-              urid:that.id,
-              version:that.version,
-              name:that.formValidate.name,
-              icon:that.formValidate.icon,
+          if (that.type === "0") {
+            that.API.menu.add(that.formValidate).then(res => {
+              if (res.code === "0") {
+                that.$Message.success(res.info);
+                that.$router.push({
+                  name: "menuList"
+                });
+              }
+            });
+          } else {
+            let request = {
+              urid: that.id,
+              version: that.version,
+              name: that.formValidate.name,
+              icon: that.formValidate.icon,
               url: that.formValidate.url,
               parentId: that.formValidate.parentId,
               indexPath: that.formValidate.indexPath,
               orderNo: that.formValidate.orderNo,
               activeFlag: that.formValidate.activeFlag,
               showFlag: that.formValidate.showFlag
-            }
+            };
             that.API.menu.edit(request).then(res => {
-              if(res.code === '0'){
-                that.$Message.success(res.info)
+              if (res.code === "0") {
+                that.$Message.success(res.info);
                 that.$router.push({
-                  name:'menuList'
-                })
+                  name: "menuList"
+                });
               }
-            })
-
+            });
           }
-
         }
       });
     },
