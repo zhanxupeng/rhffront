@@ -13,8 +13,8 @@
 
     <div class="operationStyle">
       <Button @click="add">新增</Button>
-      <Button>编辑</Button>
-      <Button>删除</Button>
+      <Button @click="edit">编辑</Button>
+      <Button @click="del">删除</Button>
     </div>
     <div>
       <div>
@@ -106,6 +106,7 @@ export default {
   mounted() {
     this.menuTitle = this.$root.$data.menuTitle;
     this.menuId = this.$route.query.id;
+    this.tableQuery();
   },
   methods: {
     turnBack() {
@@ -113,12 +114,73 @@ export default {
         name: "menuList"
       });
     },
-    add() {
-      this.$router.push({
-        name: "menuOperationAdd"
+    tableQuery() {
+      let that = this;
+      let request = {
+        pageNum: that.currentPage,
+        pageSize: that.pageSize,
+        sortName: that.sortName,
+        sortType: that.sortType,
+        entity: {
+          menuId: that.menuId
+        }
+      };
+      this.API.menuOperation.query(request).then(res => {
+        if (res.code === "0") {
+          this.data1 = res.data.data;
+        }
       });
     },
-    handleSubmit(name) {},
+    add() {
+      this.$router.push({
+        name: "menuOperationAdd",
+        query: {
+          menuId: this.menuId
+        }
+      });
+    },
+    edit() {
+      let that = this;
+      if (that.checkedNodes.length !== 1) {
+        that.$Message.warning("请选择一条操作记录！");
+        return;
+      }
+
+      that.$router.push({
+        name: "menuOperationAdd",
+        query: {
+          id: that.checkedNodes[0].urid
+        }
+      });
+    },
+    del() {
+      let that = this;
+      if (that.checkedNodes.length === 0) {
+        that.$Message.error("必须选择一条数据");
+        return;
+      }
+      console.log("that");
+      console.log(that.checkedNodes);
+      let request = that.checkedNodes.map(x => {
+        return {
+          urid: x.urid,
+          version: x.version
+        };
+      });
+
+      this.$Modal.confirm({
+        title: "消息",
+        content: "是否确认删除?",
+        onOk() {
+          that.API.menuOperation.del(request).then(res => {
+            if (res.code === "0") {
+              that.$Message.success(res.info);
+              that.tableQuery();
+            }
+          });
+        }
+      });
+    },
     selectChange(selection) {
       this.checkedNodes = selection;
     },

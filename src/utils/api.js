@@ -47,6 +47,24 @@ const menu = {
     }
 }
 
+const menuOperation = {
+    add(param){
+        return jsonPost(baseURL+'/websys/menuoperation/add.do',param)
+    },
+    edit(param){
+        return jsonPost(baseURL+'/websys/menuoperation/edit.do',param)
+    },
+    query(param){
+        return jsonPost(baseURL+'/websys/menuoperation/query.do',param)
+    },
+    del(param){
+        return jsonPost(baseURL+'/websys/menuoperation/delete.do',param)
+    },
+    getById(param){
+        return fetch(baseURL+'/websys/menuoperation/getById.do',param)
+    }
+}
+
 const commonAPI = {
     correntURL
 }
@@ -55,6 +73,7 @@ const API = {
     firstTest,
     userLogin,
     menu,
+    menuOperation,
     commonAPI
 }
 
