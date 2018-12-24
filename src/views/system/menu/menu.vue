@@ -139,10 +139,6 @@ export default {
           key: "parentName"
         },
         {
-          title: "首路径",
-          key: "indexPath"
-        },
-        {
           title: "是否激活",
           key: "activeFlagShow"
         },
@@ -306,7 +302,7 @@ export default {
     },
     treeSelectChange(checked) {
       if (checked.length > 0) {
-        this.formInline.parentId = checked[0].value;
+        this.formInline.parentId = checked[0].pid;
         this.tableQuery();
       }
     },

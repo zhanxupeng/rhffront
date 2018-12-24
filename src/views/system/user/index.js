@@ -18,7 +18,8 @@ const routers=[
             title:'用户新增'
         },
         component:userAdd
-    }
+    },
+
 ]
 
 const user={

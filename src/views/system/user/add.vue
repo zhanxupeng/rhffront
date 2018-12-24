@@ -61,6 +61,9 @@
   export default {
     data() {
       return {
+				type:0,
+				id:'',
+				version:null,
         menuTitle: "",
         title: "新增",
         formValidate: {
@@ -111,6 +114,13 @@
     },
     mounted() {
       this.menuTitle = this.$root.$data.menuTitle;
+			this.id = this.$route.query.id;
+			console.info(this.id);
+			if(this.id){
+				this.title = '编辑';
+				this.type = 1;
+				this.getDetial();
+			}
     },
     methods: {
       turnBack() {
@@ -121,7 +131,37 @@
       handleSubmit(name) {
         this.$refs[name].validate(valid => {
           if (valid) {
-            this.$Message.success("Success!");
+						if(this.type==0){
+							this.API.user.add(this.formValidate).then(response => {
+								if(response){
+									this.$Message.success("Success!");
+									this.$router.push({
+										name:"userList"
+									})
+								}
+							})
+							
+						}else{
+							let request = {
+								urid:this.id,
+								loginId:this.formValidate.loginId,
+								password:this.formValidate.password,
+								name:this.formValidate.name,
+								mobile:this.formValidate.mobile,
+								email:this.formValidate.email,
+								remark:this.formValidate.remark,
+								version:this.version
+							}
+							this.API.user.edit(request).then(response =>{
+								if(response){
+									this.$Message.success("Success!");
+									this.$router.push({
+										name:"userList"
+									})
+								}
+							})
+						}
+						
           } else {
             this.$Message.error("Fail!");
           }
@@ -129,7 +169,22 @@
       },
       handleReset(name) {
         this.$refs[name].resetFields();
-      }
+      },
+			getDetial(){
+				console.info(this.id);
+				  let that = this;
+				  this.API.user.getById({ urid : that.id }).then(response =>{
+						that.formValidate = {
+							loginId:response.data.loginId,
+							password:response.data.password,
+							name:response.data.name,
+							mobile:response.data.mobile,
+							email:response.data.email,
+							remark:response.data.remark,
+						}
+						that.version = response.data.version;
+				})
+			}
     }
   };
 </script>

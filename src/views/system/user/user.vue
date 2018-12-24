@@ -30,10 +30,10 @@
 
     <div class="operationStyle">
       <Button @click="add">新增</Button>
-      <Button>编辑</Button>
-      <Button>删除</Button>
-      <Button>启用</Button>
-      <Button>停用</Button>
+      <Button @click="edit">编辑</Button>
+      <Button @click="del">删除</Button>
+      <Button @click="active(0)">启用</Button>
+      <Button @click="active(1)">停用</Button>
     </div>
     <div>
       <div>
@@ -47,14 +47,12 @@
           @on-page-size-change="changePageSize" />
       </div>
     </div>
-
   </div>
 </template>
 <script>
   export default {
     data() {
       return {
-
         formInline: {
           user: '',
           password: ''
@@ -100,25 +98,7 @@
             key: 'remark'
           }
         ],
-        data1: [{
-            name: '郑美丽',
-            loginId: 'zhengby',
-            mobile: '15356171125',
-            email: '1098481123@qq.com',
-            userStatus: '正常',
-            lockStatus: '正常',
-            remark: '暂无'
-          },
-          {
-            name: '占旭鹏',
-            loginId: 'zhanxp',
-            mobile: '15356171125',
-            email: '1098481123@qq.com',
-            userStatus: '异常',
-            lockStatus: '锁定',
-            remark: '雪儿'
-          }
-        ],
+        data1: [],
         total: 100, // 总条数
         currentPage: 1, // 当前页码
         pageSize: 50, // 每页条数
@@ -128,15 +108,107 @@
         loading: false,
       }
     },
+		mounted() {
+			this.getData();
+		},
     methods: {
+			getData(){
+				this.API.user.getAll().then(response => {
+          this.data1 = response.data;
+      })
+			},
       add() {
         this.$router.push({
           name: 'userAdd'
         })
       },
-      handleSubmit(name) {
-
+			edit(){
+				let that = this;
+				if(that.checkedNodes.length != 1){
+					that.$Message.warning("请选择一条操作记录");
+				}else{
+					this.$router.push({
+						name:'userAdd',
+						query:{
+							id:that.checkedNodes[0].urid
+						}
+					})
+				}
+				
+			},
+			del(){
+				let that = this;
+				if(that.checkedNodes.length==0){
+					that.$Message.warning("至少选择一条操作记录")
+				}else{
+					let request = that.checkedNodes.map(x =>{
+							return{
+								urid:x.urid,
+								version:x.version
+							};
+					});
+					this.$Modal.confirm({
+						title: "消息",
+						content: "是否确认删除?",
+						onOk() {
+							that.API.user.del(request).then(res => {
+									that.$Message.success(res.info);
+									that.getData();
+							});
+						}
+					});
+				}
+				
+			},
+      handleSubmit() {
+				let request = {
+					name:this.formInline.name,
+					loginId:this.formInline.loginId,
+					userStatus:this.formInline.lockStatus
+				}
+				console.info(request);
+				this.API.user.getBySomething(request).then(response =>{
+					this.data1 = response.data;
+				})
       },
+			active(num){
+				var msg;
+				if(num==0){
+					msg = '启用';
+				}else{
+					msg = '停用';
+				}
+				let that = this;
+				if(that.checkedNodes.length != 1){
+					this.$Message.warning('请选择一条操作记录');
+				}else{
+					let that = this;
+					let request = that.checkedNodes.map(x =>{
+						return{
+							urid : x.urid,
+							version : x.version,
+							userStatus:num
+						};
+					});
+					this.API.user.getById(request[0]).then(response =>{
+						 console.info(response);
+							if(response.data.userStatus==num){
+								this.$Message.warning('该用户已' + msg);
+							}else{
+								this.$Modal.confirm({
+									title:"消息",
+									content:"确认" + msg + "该用户？",
+									onOk() {
+										that.API.user.edit(request[0]).then(res => {
+												that.$Message.success(res.info);
+												that.getData();
+										});
+									}
+								})
+							}
+					})
+				}
+			},
       selectChange(selection) {
         this.checkedNodes = selection
       },
@@ -159,6 +231,7 @@
       },
       handleReset(name) {
         this.$refs[name].resetFields();
+				this.getData();
       }
     }
   }

@@ -65,6 +65,73 @@ const menuOperation = {
     }
 }
 
+const user = {
+	getAll(){
+		return jsonPost(baseURL + '/websys/user/getAllUser.do')
+	},
+	add(param){
+		console.info(param);
+		return jsonPost(baseURL + '/websys/user/addUser.do',param)
+	},
+	edit(param){
+		return jsonPost(baseURL + '/websys/user/editUser.do',param)
+	},
+	del(param){
+		return jsonPost(baseURL + '/websys/user/delUser.do',param)
+	},
+	getById(param){
+		return post(baseURL + '/websys/user/getById.do',param)
+	},
+	getBySomething(param){
+		return jsonPost(baseURL + '/websys/user/getBySomething.do',param)
+	}
+}
+
+const role = {
+	getAll(){
+		return fetch(baseURL + '/websys/role/getAll.do')
+	},
+	add(param){
+		return fetch(baseURL + '/websys/role/addRole.do',param)
+	},
+	getById(param){
+		return jsonPost(baseURL + '/websys/role/getById.do',param)
+	},
+	edit(param){
+		return jsonPost(baseURL + '/websys/role/editRole.do',param)
+	},
+	del(param){
+		return jsonPost(baseURL + '/websys/role/delRole.do',param)
+	},
+	getBySomething(param){
+		return jsonPost(baseURL + '/websys/role/getBySomething.do',param)
+	}
+}
+
+const roleUser = {
+	getIsDistribute(param){
+		return jsonPost(baseURL + '/websys/roleuser/getIsDistribute.do',param)
+	},
+	add(param){
+		return jsonPost(baseURL + '/websys/roleuser/add.do',param)
+	},
+	del(param){
+		return jsonPost(baseURL + '/websys/roleuser/delList.do',param)
+	},
+	getIsDistributeBysm(param){
+		return jsonPost(baseURL + '/websys/roleuser/getIsDistributeBysm.do',param)
+	}
+}
+
+const roleRight = {
+	edit(param){
+		return jsonPost(baseURL + '/websys/roleright/editRoleRight.do',param)
+	},
+	queryTree(param){
+		return jsonPost(baseURL + '/websys/roleright/getRightIdByRole.do',param)
+	}
+}
+
 const commonAPI = {
     correntURL
 }
@@ -74,7 +141,11 @@ const API = {
     userLogin,
     menu,
     menuOperation,
-    commonAPI
+    commonAPI,
+	user,
+	role,
+	roleUser,
+	roleRight
 }
 
 

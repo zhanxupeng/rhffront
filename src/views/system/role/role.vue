@@ -17,11 +17,11 @@
 
     <div class="operationStyle">
       <Button @click="add">新增</Button>
-      <Button>编辑</Button>
-      <Button>删除</Button>
-      <Button>分配用户</Button>
-      <Button>分配权限</Button>
-      <Button>导出</Button>
+      <Button @click="edit">编辑</Button>
+      <Button @click="del">删除</Button>
+      <Button @click="userDistribute">分配用户</Button>
+      <Button @click="rightDistribute">分配权限</Button>
+      <Button @click="checkOut">导出</Button>
       <Button>导出全部</Button>
       <Button>字段配置</Button>
     </div>
@@ -74,17 +74,7 @@
             key: 'remark'
           }
         ],
-        data1: [{
-            name: '系统管理员',
-            code: 'R06',
-            remark: '负责系统基本运维与系统参数设置的系统运维管理专员'
-          },
-          {
-            name: '超级管理员',
-            code: 'R99',
-            address: '系统最大权限'
-          }
-        ],
+        data1: [],
         total: 100, // 总条数
         currentPage: 1, // 当前页码
         pageSize: 50, // 每页条数
@@ -94,14 +84,97 @@
         loading: false,
       }
     },
+		mounted() {
+			this.getAll();
+		},
     methods: {
+			getAll(){
+				this.API.role.getAll().then(response =>{
+					this.data1 = response.data;
+				})
+			},
       add() {
         this.$router.push({
           name: 'roleAdd'
         })
       },
+			edit(){
+				let that = this;
+				if(that.checkedNodes.length != 1){
+					this.$Message.warning("请选择一条操作记录");
+				}else{
+					this.$router.push({
+						name:'roleAdd',
+						query:{
+							id:that.checkedNodes[0].urid
+						}
+					})
+				}
+				
+			},
+			del(){
+				let that = this;
+				if(that.checkedNodes.length == 0){
+					that.$Message.warning("至少选择一条操作记录");
+				}else{
+					let that = this;
+					let request = this.checkedNodes.map(x =>{
+						return{
+							urid:x.urid,
+							version:x.version
+						}
+					});
+					this.$Modal.confirm({
+						title: "消息",
+						content: "是否确认删除?",
+						onOk() {
+							that.API.role.del(request).then(res => {
+									that.$Message.success(res.info);
+									that.getAll();
+							});
+						}
+					});
+				}
+			},
+			userDistribute(){
+				if(this.checkedNodes.length != 1){
+					this.$Message.warning("请选择一条操作记录");
+				}else{
+					this.$router.push({
+						name:'roleUser',
+						query:{
+							id:this.checkedNodes[0].urid
+						}
+					})
+				}
+			},
+			rightDistribute(){
+				if(this.checkedNodes.length != 1){
+					this.$Message.warning("请选择一条操作记录");
+				}else{
+					this.$router.push({
+						name:'roleRight',
+						query:{
+							id:this.checkedNodes[0].urid
+						}
+					})
+				}
+			},
+			checkOut(){
+				if(this.checkedNodes.length==0){
+					this.$Message.warning("至少选择一项");
+				}
+			},
       handleSubmit(name) {
-
+				console.info("111");
+				let request = {
+					name:this.formInline.name,
+					code:this.formInline.code
+				}
+				this.API.role.getBySomething(request).then(response =>{
+					console.info(response);
+					this.data1 = response.data;
+				})
       },
       selectChange(selection) {
         this.checkedNodes = selection
@@ -125,6 +198,7 @@
       },
       handleReset(name) {
         this.$refs[name].resetFields();
+				this.getAll();
       }
     }
   }

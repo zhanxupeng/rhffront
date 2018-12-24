@@ -53,6 +53,9 @@
 export default {
   data() {
     return {
+			type:0,
+			id:"",
+			version:null,
       menuTitle: "",
       title: "新增",
       formValidate: {
@@ -80,7 +83,14 @@ export default {
     };
   },
   mounted(){
-    this.menuTitle=this.$root.$data.menuTitle
+    this.menuTitle=this.$root.$data.menuTitle;
+		this.id = this.$route.query.id;
+		console.info(this.$route.query.id);
+		if(this.id){
+			 this.title='编辑',
+			 this.type=1;
+			 this.getDetial();
+		}
   },
   methods: {
     turnBack() {
@@ -88,10 +98,46 @@ export default {
         name: "roleList"
       });
     },
+		getDetial(){
+			this.API.role.getById({ urid: this.id }).then(response =>{
+				this.formValidate = {
+					name:response.data.name,
+					code:response.data.code,
+					remark:response.data.remark
+				}
+				this.version = response.data.version;
+			})
+		},
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
-          this.$Message.success("Success!");
+					let request = {
+						urid:this.id,
+						version:this.version,
+						name:this.formValidate.name,
+						code:this.formValidate.code,
+						remark:this.formValidate.remark
+					}
+					if(this.type==0){
+						this.API.role.add(request).then(response =>{
+							if(response){
+								this.$Message.success("Success!");
+								this.$router.push({
+									name:'roleList'
+								});
+							}
+						})
+					}else{
+						console.info(request);
+						this.API.role.edit(request).then(response =>{
+							if(response){
+								this.$Message.success("Success!");
+								this.$router.push({
+									name:'roleList'
+								});
+							}
+						})
+					}
         } else {
           this.$Message.error("Fail!");
         }
